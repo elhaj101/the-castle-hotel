@@ -1,13 +1,13 @@
-<h1>Available Rooms</h1>
-{% for room in rooms %}
-    <p>{{ room.type }} - ${{ room.price }} <a href="#">Book</a></p>
+<h1>Available Restaurant Tables</h1>
+{% for table in tables %}
+    <p>Table for {{ table.capacity }} - <a href="#">Book</a></p>
 {% endfor %}
 <h2>Comments</h2>
 {% for comment in comments %}
     <p>{{ comment.user }}: {{ comment.text }} ({{ comment.created_at }})</p>
 {% endfor %}
 {% if user.is_authenticated %}
-    <form method="post" action="{% url 'add_comment' 'rooms' %}">
+    <form method="post" action="{% url 'add_comment' 'restaurant' %}">
         {% csrf_token %}
         <textarea name="text" required></textarea>
         <button type="submit">Add Comment</button>
