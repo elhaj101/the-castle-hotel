@@ -89,5 +89,10 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-# Static files
+import os
+
+# Other settings...
+
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # Optional: Your static files directory
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')   # Directory where collectstatic will collect files

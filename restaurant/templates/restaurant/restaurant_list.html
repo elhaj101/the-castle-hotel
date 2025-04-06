@@ -1,4 +1,8 @@
-<h1>Available Restaurant Tables</h1>
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<h1 class="class">Available Restaurant Tables</h1>
 {% for table in tables %}
     <p>Table for {{ table.capacity }} - <a href="#">Book</a></p>
 {% endfor %}
@@ -12,6 +16,17 @@
         <textarea name="text" required></textarea>
         <button type="submit">Add Comment</button>
     </form>
+    <p><a href="{% url 'logout' %}">Sign Out</a></p>
 {% else %}
-    <p><a href="{% url 'login' %}">Log in</a> to add a comment.</p>
+    <p><a href="{% url 'login' %}">Sign In</a> to add a comment or <a href="{% url 'signup' %}">Sign Up</a>.</p>
 {% endif %}
+
+<div class="auth-buttons">
+    {% if user.is_authenticated %}
+        <p>Welcome, {{ user.username }}!</p>
+        <a href="{% url 'logout' %}">Sign Out</a>
+    {% else %}
+        <a href="{% url 'signup' %}">Sign Up</a>
+        <a href="{% url 'login' %}">Sign In</a>
+    {% endif %}
+</div>

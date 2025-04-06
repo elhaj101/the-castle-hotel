@@ -1,0 +1,14 @@
+.auth-buttons a {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.auth-buttons a:hover {
+    background-color: #45a049;
+}
+
+h1 {color:red;}

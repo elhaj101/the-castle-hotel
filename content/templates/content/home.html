@@ -1,5 +1,17 @@
-<h1>Welcome to The Castle Hotel</h1>
+<h1 class="class">Welcome to The Castle Hotel</h1>
 <p>Choose an experience:</p>
 <a href="{% url 'room_list' %}">Rooms</a>
 <a href="{% url 'wellness_list' %}">Wellness</a>
 <a href="{% url 'restaurant_list' %}">Restaurant</a>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<div class="auth-buttons">
+    {% if user.is_authenticated %}
+        <p>Welcome, {{ user.username }}!</p>
+        <a href="{% url 'logout' %}">Sign Out</a>
+    {% else %}
+        <a href="{% url 'signup' %}">Sign Up</a>
+        <a href="{% url 'login' %}">Sign In</a>
+    {% endif %}
+</div>
