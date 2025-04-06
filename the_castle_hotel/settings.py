@@ -10,7 +10,6 @@ SECRET_KEY = 'your-secret-key'  # Replace with a secure key
 DEBUG = True
 ALLOWED_HOSTS = []
 
-# Installed apps
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -18,8 +17,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'content',
+    'rooms',
+    'wellness',
+    'restaurant',
+    'accounts',
+    'comments',
 ]
-
 # Middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
