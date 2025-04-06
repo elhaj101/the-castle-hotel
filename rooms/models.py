@@ -14,3 +14,4 @@ class RoomBooking(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     date = models.DateField()
     time = models.TimeField()
+    
