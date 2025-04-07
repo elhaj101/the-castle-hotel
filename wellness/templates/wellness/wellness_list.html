@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-
+{% load static %}
+<body class="wellness-background">
 <h1>Available Wellness Sessions</h1>
 {% for session in sessions %}
     <p>{{ session.type }} - {{ session.schedule }} <a href="#">Book</a></p>
@@ -29,4 +30,6 @@
         <a href="{% url 'login' %}">Sign In</a>
     {% endif %}
 </div>
+</body>
+
 {% endblock %}

@@ -1,0 +1,169 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Set up the viewport */
+html {
+    font-size: 16px; /* Base font size */
+    scroll-behavior: smooth; /* Smooth scrolling */
+    height: 100%; /* Ensure the HTML element takes up the full height */
+}
+
+body {
+    min-height: 100vh; /* Full viewport height */
+    display: flex; /* Enables flexbox for layout */
+    flex-direction: column; /* Stacks content vertically */
+    justify-content: center; /* Centers content vertically */
+    align-items: center; /* Centers content horizontally */
+    font-family: Arial, sans-serif; /* Default font */
+    line-height: 1.6; /* Improves readability */
+    background-color: #f4f4f4; /* Light background color */
+    color: #333; /* Default text color */
+    margin: 0; /* Removes default margin */
+}
+
+/* Utility Classes */
+.container {
+    width: 90%;
+    max-width: 1200px; /* Limits the width of the container */
+    margin: 0 auto; /* Centers the container */
+    padding: 1rem; /* Adds padding inside the container */
+}
+
+img {
+    max-width: 100%; /* Ensures images are responsive */
+    height: auto; /* Maintains aspect ratio */
+    display: block; /* Removes inline spacing */
+}
+
+/* Links */
+a {
+    text-decoration: none; /* Removes underline */
+    color: inherit; /* Inherits text color */
+}
+
+a:hover {
+    text-decoration: underline; /* Adds underline on hover */
+}
+
+/* Buttons */
+button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff; /* Primary button color */
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px; /* Adjust font size for smaller screens */
+    }
+
+    .container {
+        width: 100%; /* Full width for smaller screens */
+    }
+}
+
+/* static/css/style.css */
+/* Specific background styling */
+.home-background {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+    overflow: hidden; /* Prevent scrolling */
+    position: relative;
+}
+
+/* Style the video to fill the viewport */
+/* Specific background styling */
+.background-video {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+    overflow: hidden; /* Prevent scrolling */
+    position: relative;
+}
+
+/* Video Container */
+.video-container {
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    max-width: 1200px; /* Set a max width */
+    max-height: 800px; /* Set a max height */
+    position: relative; /* Position context for the video */
+    overflow: hidden; /* Hide overflow */
+    margin: 0 auto; /* Center the container */
+}
+
+/* Style the video */
+.video-container video {
+    position: absolute; /* Position the video inside the container */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    width: 100%; /* Full width of the container */
+    height: 100%; /* Full height of the container */
+    object-fit: cover; /* Cover the container without distortion */
+    transform: translate(-50%, -50%); /* Center the video */
+    z-index: -1; /* Keep behind other content */
+}
+
+/* Add the video link in your HTML file inside the .home-background element */
+
+.wellness-background {
+    background-image: url('../media/pexels-quark-studio-1159039-2506990.jpg');
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    min-height: 100vh; /* Ensures the body takes up the full viewport height */
+    margin: 0; /* Removes default margin */
+}
+
+.rooms-background {
+    background-image: url('../media/pexels-pixabay-164595.jpg');
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    min-height: 100vh; /* Ensures the body takes up the full viewport height */
+    margin: 0; /* Removes default margin */
+}
+
+.rest-background {
+    background-image: url('../media/pexels-quark-studio-1159039-3201921.jpg');
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    min-height: 100vh; /* Ensures the body takes up the full viewport height */
+    margin: 0; /* Removes default margin */
+}
+
+.accounts-background {
+    background-image: url("../media/pexels-mikhail-nilov-7820359.jpg");
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    min-height: 100vh; /* Ensures the body takes up the full viewport height */
+    margin: 0; /* Removes default margin */
+}
+
+.contact-background {
+    background-image: url("../media/pexels-cottonbro-7609119.jpg"); /* Added missing semicolon */
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    min-height: 100vh; /* Ensures the body takes up the full viewport height */
+    margin: 0; /* Removes default margin */
+}

@@ -2,6 +2,7 @@
 {% block content %}
 
 {% load static %}
+<body class="rest-background">
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 <h1 class="class">Available Restaurant Tables</h1>
@@ -32,5 +33,6 @@
         <a href="{% url 'login' %}">Sign In</a>
     {% endif %}
 </div>
+</body>
 {% endblock %}
 

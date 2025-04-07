@@ -1,5 +1,15 @@
 
 {% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<body>
+<video autoplay muted loop class="background-video">
+    <div class="video-container"></div>
+    <source src="{% static 'media/videos/4922982-uhd_3840_2160_24fps.mp4' %}" type="video/mp4">
+    Your browser does not support the video tag.
+</div>
+</video>
+
 
 <h1 class="class">Welcome to The Castle Hotel</h1>
 <p>Choose an experience:</p>
@@ -18,3 +28,7 @@
         <a href="{% url 'login' %}">Sign In</a>
     {% endif %}
 </div>
+</body>
+
+{% endblock %}
+
