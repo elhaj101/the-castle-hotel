@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% block content %}
 
 <h1>Available Wellness Sessions</h1>
 {% for session in sessions %}
@@ -28,3 +29,4 @@
         <a href="{% url 'login' %}">Sign In</a>
     {% endif %}
 </div>
+{% endblock %}
