@@ -1,38 +1,32 @@
-
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
-<body>
-<video autoplay muted loop class="background-video">
-    <div class="video-container"></div>
-    <iframe 
-    src="https://drive.google.com/file/d/1SxjevveHcMSUGa-B9AVC6mjXarj53zfi/preview" 
-    width="100%" 
-    height="480" 
-    allow="autoplay">
-</iframe>
-</div>
-</video>
+<body class="home-background">
+   
+        
+
+    <div class="section" id="section11">
+        <header class="header"> The Castle Hotel</header>
+    </div>
+
+    <div class="section" id="section22">
+       
+    Located in the imaginary mountains of the world, The Castle Hotel is a luxurious retreat that offers breathtaking views and unparalleled service. Whether you're here for a romantic getaway, a family vacation, or a business trip, we have something for everyone.
+    
+        
+    </div>
+
+    <div class="section" id="section33">
+        
+        <h1>Choose your experience</h1>
+        <a href="{% url 'room_list' %}">Rooms</a>
+        <a href="{% url 'wellness_list' %}">Wellness</a>
+        <a href="{% url 'restaurant_list' %}">Restaurant</a>
+    </div>
+    <footer>
 
 
-<h1 class="class">Welcome to The Castle Hotel</h1>
-<p>Choose an experience:</p>
-<a href="{% url 'room_list' %}">Rooms</a>
-<a href="{% url 'wellness_list' %}">Wellness</a>
-<a href="{% url 'restaurant_list' %}">Restaurant</a>
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-
-<div class="auth-buttons">
-    {% if user.is_authenticated %}
-        <p>Welcome, {{ user.username }}!</p>
-        <a href="{% url 'logout' %}">Sign Out</a>
-    {% else %}
-        <a href="{% url 'signup' %}">Sign Up</a>
-        <a href="{% url 'login' %}">Sign In</a>
-    {% endif %}
-</div>
+    </footer>
 </body>
-
+<script src="{% static 'js/smooth-scroll.js' %}"></script>
 {% endblock %}
-

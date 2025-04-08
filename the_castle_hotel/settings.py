@@ -1,14 +1,13 @@
-# filepath: /Users/test/the-castle-hotel/the_castle_hotel/settings.py
-
 from pathlib import Path
+import os
 
 # Base directory
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Security settings
 SECRET_KEY = 'your-secret-key'  # Replace with a secure key
-DEBUG = True
-ALLOWED_HOSTS = []
+DEBUG = True  # Set to False in production
+ALLOWED_HOSTS = ['your-app-name.herokuapp.com']  # Replace with your Heroku app name
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -24,9 +23,11 @@ INSTALLED_APPS = [
     'accounts',
     'comments',
 ]
+
 # Middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Added for serving static files
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -89,10 +90,7 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-import os
-
-# Other settings...
-
+# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # Optional: Your static files directory
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # Your static files directory
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')   # Directory where collectstatic will collect files

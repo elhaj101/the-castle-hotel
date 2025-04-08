@@ -1,0 +1,1 @@
+web: gunicorn the-castle-hotel.wsgi

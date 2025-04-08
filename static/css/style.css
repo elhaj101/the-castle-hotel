@@ -50,6 +50,18 @@ a:hover {
     text-decoration: underline; /* Adds underline on hover */
 }
 
+#section22 {
+    background-color: #fff;
+    padding: 5rem;
+
+}
+
+#section33 {
+    background-color: #fff;
+    padding: 5rem;
+    
+}
+/* Headings */
 /* Buttons */
 button {
     padding: 0.5rem 1rem;
@@ -77,51 +89,31 @@ button:hover {
 }
 
 /* static/css/style.css */
-/* Specific background styling */
+
 .home-background {
-    margin: 0;
-    padding: 0;
-    height: 100vh; /* Full viewport height */
-    width: 100vw; /* Full viewport width */
-    overflow: hidden; /* Prevent scrolling */
-    position: relative;
+    background-image: url('../media/pexels-olli-29037656.jpg');
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    min-height: 100vh; /* Ensures the body takes up the full viewport height */
+    margin: 0; /* Removes default margin */
 }
 
-/* Style the video to fill the viewport */
-/* Specific background styling */
-.background-video {
-    margin: 0;
-    padding: 0;
-    height: 100vh; /* Full viewport height */
-    width: 100vw; /* Full viewport width */
-    overflow: hidden; /* Prevent scrolling */
-    position: relative;
+.header {
+    font-size: 27px;
+    position: fixed;
+    top: 62px;
+    left: 87px;
+    width: 100%;
+    /* background-color: #fff; */
+    z-index: 1000;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Video Container */
-.video-container {
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    max-width: 1200px; /* Set a max width */
-    max-height: 800px; /* Set a max height */
-    position: relative; /* Position context for the video */
-    overflow: hidden; /* Hide overflow */
-    margin: 0 auto; /* Center the container */
-}
 
-/* Style the video */
-.video-container video {
-    position: absolute; /* Position the video inside the container */
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    width: 100%; /* Full width of the container */
-    height: 100%; /* Full height of the container */
-    object-fit: cover; /* Cover the container without distortion */
-    transform: translate(-50%, -50%); /* Center the video */
-    z-index: -1; /* Keep behind other content */
-}
 
-/* Add the video link in your HTML file inside the .home-background element */
+
 
 .wellness-background {
     background-image: url('../media/pexels-quark-studio-1159039-2506990.jpg');
