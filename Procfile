@@ -1,1 +1,1 @@
-web: gunicorn the-castle-hotel.wsgi
+web: gunicorn the_castle_hotel.wsgi
