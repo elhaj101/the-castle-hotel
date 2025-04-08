@@ -5,6 +5,7 @@
     box-sizing: border-box;
 }
 
+
 /* Set up the viewport */
 html {
     font-size: 16px; /* Base font size */
@@ -49,6 +50,18 @@ a:hover {
     text-decoration: underline; /* Adds underline on hover */
 }
 
+#section22 {
+    background-color: #fff;
+    padding: 5rem;
+
+}
+
+#section33 {
+    background-color: #fff;
+    padding: 5rem;
+    
+}
+/* Headings */
 /* Buttons */
 button {
     padding: 0.5rem 1rem;
@@ -75,18 +88,32 @@ button:hover {
     }
 }
 
-
-
 /* static/css/style.css */
-/* Specific background styling */
+
 .home-background {
-    background-image: url('../media/pexels-quark-studio-1159039-2506990.jpg');
+    background-image: url('../media/pexels-olli-29037656.jpg');
     background-size: cover; /* Ensures the image covers the entire background */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents the image from repeating */
     min-height: 100vh; /* Ensures the body takes up the full viewport height */
     margin: 0; /* Removes default margin */
 }
+
+.header {
+    font-size: 27px;
+    position: fixed;
+    top: 62px;
+    left: 87px;
+    width: 100%;
+    /* background-color: #fff; */
+    z-index: 1000;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
 
 .wellness-background {
     background-image: url('../media/pexels-quark-studio-1159039-2506990.jpg');
@@ -125,7 +152,7 @@ button:hover {
 }
 
 .contact-background {
-    background-image: url("../media/pexels-cottonbro-7609119.jpg"
+    background-image: url("../media/pexels-cottonbro-7609119.jpg"); /* Added missing semicolon */
     background-size: cover; /* Ensures the image covers the entire background */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents the image from repeating */

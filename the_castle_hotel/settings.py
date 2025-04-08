@@ -1,14 +1,20 @@
-from pathlib import Path
 import os
+import dj_database_url
+from pathlib import Path
 
 # Base directory
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Security settings
-SECRET_KEY = 'your-secret-key'  # Replace with a secure key
-DEBUG = True  # Set to False in production
-ALLOWED_HOSTS = ['your-app-name.herokuapp.com']  # Replace with your Heroku app name
+SECRET_KEY = os.getenv('SECRET_KEY', 'your-secret-key')  # Use environment variable for security
+DEBUG = os.getenv('DEBUG', 'True') == 'True'  # Default to True, but set to False in production
+ALLOWED_HOSTS = [
+    'the-castle-hotel-d35174139c77.herokuapp.com',  # Your Heroku app name from logs
+    'localhost',
+    '127.0.0.1',
+]
 
+# Installed apps
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -27,7 +33,7 @@ INSTALLED_APPS = [
 # Middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Added for serving static files
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # For serving static files
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -60,11 +66,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'the_castle_hotel.wsgi.application'
 
 # Database
+# Use dj_database_url to parse DATABASE_URL from Heroku environment
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default='sqlite:///' + str(BASE_DIR / 'db.sqlite3'),  # Fallback to SQLite locally
+        conn_max_age=600,  # Keep database connections alive for 10 minutes
+    )
 }
 
 # Password validation
@@ -92,5 +99,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # Your static files directory
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')   # Directory where collectstatic will collect files
+STATICFILES_DIRS = [BASE_DIR / 'static']  # Your static files directory
+STATIC_ROOT = BASE_DIR / 'staticfiles'    # Directory where collectstatic will collect files
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  # Optimize static files
+
+# Default primary key field type
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
