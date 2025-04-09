@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}
-Home - The Castle Hotel {% endblock %}
 
-{% block styles %}
+
+
+
+{% block content %}
 <body class="home-background">
    
         
 
-    <div class="section" id="section11">
+    {% block title %}<div class="section" id="section11">
         <header class="header"> The Castle Hotel</header>
     </div>
+     {% endblock %}
 
     <div class="section" id="section22">
         Located in the imaginary mountains of the world, The Castle Hotel is a luxurious retreat that offers breathtaking views and unparalleled service. Whether you're here for a romantic getaway, a family vacation, or a business trip, we have something for everyone.
