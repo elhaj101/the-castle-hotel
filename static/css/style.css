@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 }
 
 
@@ -26,12 +27,19 @@ body {
     margin: 0; /* Removes default margin */
 }
 
+
+.footer {
+    margin-top: auto; /* Pushes footer to the bottom */
+    padding: 20px; /* Adds some padding */
+    background-color: #ccc; /* Background color for footer */
+    width: 100%; /* Full width */
+    text-align: center; /* Centered text */
+}
 /* Utility Classes */
 .container {
-    width: 90%;
-    max-width: 1200px; /* Limits the width of the container */
-    margin: 0 auto; /* Centers the container */
-    padding: 1rem; /* Adds padding inside the container */
+    /* width: 90%; */
+    /* max-width: 1200px; */
+    padding: 0;
 }
 
 img {
@@ -51,18 +59,28 @@ a:hover {
 }
 
 #section22 {
+    height: 35rem;
     background-color: #fff;
-    padding: 5rem;
-
+    margin-top: 70rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    padding: 1%;
 }
 
 #section33 {
+    height: 35rem;
     background-color: #fff;
-    padding: 5rem;
-    
+    margin-top: 17rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    padding: 1%;
 }
+
 /* Headings */
 /* Buttons */
+.py-5 {
+    width: 100%; /* Set the width to 95% */
+}
 button {
     padding: 0.5rem 1rem;
     border: none;
@@ -78,34 +96,30 @@ button:hover {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    body {
-        font-size: 14px; /* Adjust font size for smaller screens */
-    }
 
-    .container {
-        width: 100%; /* Full width for smaller screens */
-    }
-}
 
 /* static/css/style.css */
 
 .home-background {
+    display:flex;
+    flex-direction:column;
+    flex:1;
     background-image: url('../media/pexels-olli-29037656.jpg');
     background-size: cover; /* Ensures the image covers the entire background */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents the image from repeating */
     min-height: 100vh; /* Ensures the body takes up the full viewport height */
     margin: 0; /* Removes default margin */
+    flex:1;
 }
 
 .header {
-    font-size: 27px;
+    font-size: 36px;
     position: fixed;
-    top: 62px;
-    left: 87px;
+    top: 53px;
+    left: 48px;
     width: 100%;
-    /* background-color: #fff; */
+    background-color: rgba(255, 255, 255, 0.50);
     z-index: 1000;
     padding: 1rem;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -114,26 +128,36 @@ button:hover {
 
 
 
-
 .wellness-background {
+    display:flex;
+    flex-direction:column;
+    flex:1;
     background-image: url('../media/pexels-quark-studio-1159039-2506990.jpg');
     background-size: cover; /* Ensures the image covers the entire background */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents the image from repeating */
     min-height: 100vh; /* Ensures the body takes up the full viewport height */
     margin: 0; /* Removes default margin */
+    flex:1;
 }
 
 .rooms-background {
+    display:flex;
+    flex-direction:column;
+    flex:1;
     background-image: url('../media/pexels-pixabay-164595.jpg');
     background-size: cover; /* Ensures the image covers the entire background */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents the image from repeating */
     min-height: 100vh; /* Ensures the body takes up the full viewport height */
     margin: 0; /* Removes default margin */
+   
 }
 
 .rest-background {
+    display:flex;
+    flex-direction:column;
+    flex:1;
     background-image: url('../media/pexels-quark-studio-1159039-3201921.jpg');
     background-size: cover; /* Ensures the image covers the entire background */
     background-position: center; /* Centers the image */
@@ -143,6 +167,9 @@ button:hover {
 }
 
 .accounts-background {
+    display:flex;
+    flex-direction:column;
+    flex:1;
     background-image: url("../media/pexels-mikhail-nilov-7820359.jpg");
     background-size: cover; /* Ensures the image covers the entire background */
     background-position: center; /* Centers the image */
@@ -152,6 +179,9 @@ button:hover {
 }
 
 .contact-background {
+    display:flex;
+    flex-direction:column;
+    flex:1;
     background-image: url("../media/pexels-cottonbro-7609119.jpg"); /* Added missing semicolon */
     background-size: cover; /* Ensures the image covers the entire background */
     background-position: center; /* Centers the image */
@@ -159,3 +189,4 @@ button:hover {
     min-height: 100vh; /* Ensures the body takes up the full viewport height */
     margin: 0; /* Removes default margin */
 }
+
