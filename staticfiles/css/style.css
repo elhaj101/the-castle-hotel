@@ -27,7 +27,32 @@ body {
     margin: 0; /* Removes default margin */
 }
 
+.room-gallery {
+    display: flex; /* Enables flexbox for room items */
+    justify-content: center; /* Centers room items */
+    gap: 20px; /* Space between room items */
+}
 
+.room-item {
+    background: white; /* White background for room items */
+    border: 1px solid #ccc; /* Border around room items */
+    border-radius: 8px; /* Rounded corners */
+    padding: 10px; /* Padding inside room items */
+    max-width: 300px; /* Maximum width for room items */
+}
+
+.room-item img {
+    width: 100%; /* Responsive image */
+    border-radius: 8px 8px 0 0; /* Rounded top corners for images */
+}
+
+.room-item h2 {
+    margin-top: 10px; /* Space above room titles */
+}
+
+.room-item p {
+    margin-top: 5px; /* Space above room descriptions */
+}
 .footer {
     margin-top: auto; /* Pushes footer to the bottom */
     padding: 20px; /* Adds some padding */
@@ -66,6 +91,7 @@ a:hover {
     width: 100%;
     padding: 1%;
 }
+
 
 #section33 {
     height: 35rem;

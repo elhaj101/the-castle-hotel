@@ -130,7 +130,7 @@ button:hover {
     display:flex;
     flex-direction:column;
     flex:1;
-    background-image: url('../media/pexels-olli-29037656.jpg');
+    background-image: url('../../static/media/castle2.jpg');
     background-size: cover; /* Ensures the image covers the entire background */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents the image from repeating */
