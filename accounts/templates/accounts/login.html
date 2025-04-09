@@ -1,20 +1,9 @@
 {% extends 'base.html' %}
+{% block title %}
+Login - The Castle Hotel
+{% endblock %}
 {% block content %}
 {% load static %}
 
-<body class="accounts-background">
-    <div class="section" id="section1">
-        <!-- Section 1: You can add content here if needed -->
-    </div>
-    <div class="section" id="section2">
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Log In</button>
-        </form>
-    </div>
-    <div class="section" id="section3">
-        <!-- Section 3: You can add content here if needed -->
-    </div>
-</body>
+
 {% endblock %}

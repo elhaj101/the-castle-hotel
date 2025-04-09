@@ -1,42 +1,5 @@
 {% extends 'base.html' %}
-{% block content %}
 {% load static %}
-<body class="wellness-background">
-    <div class="section" id="section1">
-        <h1>Available Wellness Sessions</h1>
-        {% for session in sessions %}
-            <p>{{ session.type }} - {{ session.schedule }} <a href="#">Book</a></p>
-        {% endfor %}
-    </div>
-
-    <div class="section" id="section2">
-        <h2>Comments</h2>
-        {% for comment in comments %}
-            <p>{{ comment.user }}: {{ comment.text }} ({{ comment.created_at }})</p>
-        {% endfor %}
-        
-        {% if user.is_authenticated %}
-            <form method="post" action="{% url 'add_comment' 'wellness' %}">
-                {% csrf_token %}
-                <textarea name="text" required></textarea>
-                <button type="submit">Add Comment</button>
-            </form>
-            <p><a href="{% url 'logout' %}">Sign Out</a></p>
-        {% else %}
-            <p><a href="{% url 'login' %}">Sign In</a> to add a comment or <a href="{% url 'signup' %}">Sign Up</a>.</p>
-        {% endif %}
-    </div>
-
-    <div class="section" id="section3">
-        <div class="auth-buttons">
-            {% if user.is_authenticated %}
-                <p>Welcome, {{ user.username }}!</p>
-                <a href="{% url 'logout' %}">Sign Out</a>
-            {% else %}
-                <a href="{% url 'signup' %}">Sign Up</a>
-                <a href="{% url 'login' %}">Sign In</a>
-            {% endif %}
-        </div>
-    </div>
-</body>
+{% block title %}
+Wellness - The Castle Hotel
 {% endblock %}
