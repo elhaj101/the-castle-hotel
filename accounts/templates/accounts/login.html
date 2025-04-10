@@ -1,25 +1,10 @@
 {% extends 'base.html' %}
-{% block title %}<div class="section" id="section11">
-    <header class="header"> The Castle Hotel - Login </header>
-</div>
- {% endblock %}
- {% block content %}
- <div id="login-form" class="container my-5" style="
-      width: 90%; 
-      max-width: 1200px; 
-      padding: 1%;
-      padding-top: 20%;">
-
- </div>
-
- {% load static %}
-  <body class="home-background">
-    
-     
-     
-    
- </body>
- {% endblock %}
- 
- 
- 
+{% block header %} The Castle Hotel - Login {% endblock %}
+{% block content %}
+  <h1> </h1>
+  <ul>
+    {% for restaurant in restaurants %}
+      <li>{{ restaurant.name }} - {{ restaurant.location }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

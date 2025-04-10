@@ -1,57 +1,10 @@
 {% extends 'base.html' %}
-{% block title %}<div class="section" id="section11">
-    <header class="header"> The Castle Hotel - Signup </header>
-</div>
- {% endblock %}
- {% block content %}
- {% block form %}
-        <div class="container my-5" style="
-            width: 90%; 
-            max-width: 1200px; 
-            padding: 1%;
-            padding-top: 20%;
-        ">
-            <div class="row justify-content-center">
-               <div class="col-md-6">
-                  <div class="card shadow">
-                        <div class="card-header bg-primary text-white">
-                            <h3 class="mb-0">Sign Up</h3>
-                        </div>
-                        <div class="card-body">
-                            <form method="post" action="{% url 'signup' %}">
-                                {% csrf_token %}
-                                <div class="mb-3">
-                                    <label for="username" class="form-label">Username</label>
-                                    <input type="text" class="form-control" id="username" name="username" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="password1" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="password1" name="password1" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="password2" class="form-label">Confirm Password</label>
-                                    <input type="password" class="form-control" id="password2" name="password2" required>
-                                </div>
-                                <button type="submit" class="btn btn-primary w-100">Sign Up</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        
-        {% endblock %}
- {% load static %}
-  <body class="home-background">
-    
-    
- </body>
- {% endblock %}
- 
- 
- 
+{% block header %} The Castle Hotel - Signup {% endblock %}
+{% block content %}
+  <h1>Restaurant List</h1>
+  <ul>
+    {% for restaurant in restaurants %}
+      <li>{{ restaurant.name }} - {{ restaurant.location }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

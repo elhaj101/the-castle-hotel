@@ -1,48 +1,10 @@
 {% extends 'base.html' %}
-{% block title %}<div class="section" id="section11">
-    <header class="header"> The Castle Hotel -Restaurant</header>
-</div>
- {% endblock %}
- {% block content %}
-{% load static %}
- <body class="home-background">
-   
-        
-
-    <div class="section" id="section22">
-        Located in the imaginary mountains of the world, The Castle Hotel is a luxurious retreat that offers breathtaking views and unparalleled service. Whether you're here for a romantic getaway, a family vacation, or a business trip, we have something for everyone.
-    
-        <div class="image-placeholder" style="display: flex; justify-content: space-between; margin-top: 20px;">
-            <div style="flex: 1; margin-right: 10px;">
-                <img src="../../../static/media/restaurant.jpg" alt="Image 1" style="width: 100%; height: auto;">
-            </div>
-            <div style="flex: 1; margin-right: 10px;">
-                <img src="../../../static/media/restaurant.jpg" alt="Image 2" style="width: 100%; height: auto;">
-            </div>
-            <div style="flex: 1;">
-                <img src="../../../static/media/restaurant.jpg" alt="Image 3" style="width: 100%; height: auto;">
-            </div>
-        </div>
-    </div>
-    <div class="section" id="section33">
-    <div class="image-placeholder" style="display: flex; justify-content: space-between; margin-top: 20px;">
-        <div style="flex: 1; margin-right: 10px; text-align: center;">
-           
-            </div>
-        </div>
-        <div style="flex: 1; margin-right: 10px; text-align: center;">
-           
-            
-        </div>
-        <div style="flex: 1; text-align: center;">
-           
-        </div>
-    </div>
-</div>
-    
-    
-   
-</body>
+{% block header %} The Castle Hotel - Restaurant {% endblock %}
+{% block content %}
+  <h1></h1>
+  <ul>
+    {% for restaurant in restaurants %}
+      <li>{{ restaurant.name }} - {{ restaurant.location }}</li>
+    {% endfor %}
+  </ul>
 {% endblock %}
-
-
