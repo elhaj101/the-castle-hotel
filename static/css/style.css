@@ -27,9 +27,7 @@ body {
     margin: 0; /* Removes default margin */
 }
 
-#button-1 {
-    
-}
+
 
 .room-gallery {
     display: flex; /* Enables flexbox for room items */
