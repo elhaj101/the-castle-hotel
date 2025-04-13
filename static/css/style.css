@@ -27,6 +27,10 @@ body {
     margin: 0; /* Removes default margin */
 }
 
+#button-1 {
+    
+}
+
 .room-gallery {
     display: flex; /* Enables flexbox for room items */
     justify-content: center; /* Centers room items */
@@ -89,8 +93,7 @@ a:hover {
     flex-direction: column;
     flex: 0.2;
     height: 15rem;
-    
-    background-image: linear-gradient(to bottom, #f8ecc9, #f7edcf, #f7eed6, #f6efdc, #f5f0e2);
+    background-color: #fff;
     margin-top: 10rem;
     margin-bottom: 1rem;
     width: 100%;
@@ -106,7 +109,7 @@ a:hover {
     margin-bottom: 1rem;
     width: 100%;
     padding: 1%;
-    background-image: url('../media/castle3.jpg');
+    background-image: url('../media/castle2.jpg');
     background-size: cover; /* Ensures the image covers the entire background */
     background-position:center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents the image from repeating */
@@ -120,14 +123,13 @@ a:hover {
     display: flex
 ;
     flex-direction: column;
-    height: 35rem;
+    height: 30rem;
     background-color: #fff;
     margin-top: 17rem;
-    margin-bottom: 1rem;
+    margin-bottom: 5rem;
     width: 100%;
-    padding: 1%;
+    padding: 2%;
 }
-
 /* Headings */
 /* Buttons */
 .py-5 {
@@ -141,9 +143,10 @@ a:hover {
 /* static/css/style.css */
 
 .circular-gallery {
-    display: flex;
+    display: flex
+;
     justify-content: center;
-    gap: 10%;
+    gap: 12%;
     padding: 20px;
     flex: 1;
 }
@@ -196,13 +199,12 @@ a:hover {
     flex-direction: row;
     flex: 1;
     background-color: #fff;
-    margin-top: 7rem;
-    margin-bottom: 1rem;
+    margin-top: 0rem;
+    margin-bottom: 0rem;
     width: 100%;
     padding: 1%;
-    gap: 10%;
+    gap: 16%;
     justify-content: center;
-    padding-right: 2%;
 }
 
 .wellness-background {
