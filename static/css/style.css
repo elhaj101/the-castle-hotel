@@ -108,8 +108,8 @@ a:hover {
     margin-top: 10rem;
     margin-bottom: 1rem;
     width: 100%;
-    padding: 1%;
-    background-image: url('../media/castle2.jpg');
+    padding: 0%;
+    background-image: url('../media/castle3.jpg');
     background-size: cover; /* Ensures the image covers the entire background */
     background-position:center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents the image from repeating */
