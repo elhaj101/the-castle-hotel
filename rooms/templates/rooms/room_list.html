@@ -1,7 +1,28 @@
 {% extends 'base.html' %}
 {% block header %} The Castle Hotel - Rooms {% endblock %}
 {% block content %}
-  <h1> </h1>
-  
+<div class="section22">
+  <h1> We have a variety of booking options </h1>
+  <p> You can choose a single room or a double room or even a suit </p>
+  <div class="flex items-center justify-center">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <img src="../../../static/media/room4.jpg" alt="Photo 1" class="w-full h-auto object-cover">
+        <p class="text-center mt-2 text-gray-700">Double Room</p>
+      </div>
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <img src="../../../static/media/singleroom.jpg" alt="Photo 2" class="w-full h-auto object-cover">
+        <p class="text-center mt-2 text-gray-700">Single Room</p>
+      </div>
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <img src="../../../static/media/room1.jpg" alt="Photo 3" class="w-full h-auto object-cover">
+        <p class="text-center mt-2 text-gray-700">Suite</p>
+      </div>
+    </div>
+  </div>
+  <div class="flex justify-center mt-4">
+    <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Book</button>
+  </div>
+</div>
 {% endblock %}
  
