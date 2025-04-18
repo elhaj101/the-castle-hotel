@@ -12,3 +12,5 @@ def add_comment(request, page):
         Comment.objects.create(user=request.user, text=text, page=page)
         return redirect(request.META.get('HTTP_REFERER', 'home'))  # Redirect back to the page
     return redirect('home')
+
+
