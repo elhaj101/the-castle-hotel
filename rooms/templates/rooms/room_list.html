@@ -43,7 +43,7 @@
 
   <!-- Add Comment Form -->
   {% if user.is_authenticated %}
-  <form method="post" action="{% url 'add_comment' 'restaurant' %}" class="mt-6">
+  <form method="post" action="{% url 'add_comment' 'rooms' %}" class="mt-6">
       {% csrf_token %}
       <textarea name="text" rows="3" class="w-full border rounded-lg p-3 focus:outline-none focus:ring focus:ring-blue-300" placeholder="Write your comment here..." required></textarea>
       <button type="submit" class="mt-3 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">

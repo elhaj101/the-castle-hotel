@@ -1,4 +1,0 @@
-web: gunicorn the_castle_hotel.wsgi --log-file -
-x
-^x
-
