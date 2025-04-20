@@ -69,10 +69,11 @@ WSGI_APPLICATION = 'the_castle_hotel.wsgi.application'
 # Use dj_database_url to parse DATABASE_URL from Heroku environment
 DATABASES = {
     'default': dj_database_url.config(
-        default='sqlite:///' + str(BASE_DIR / 'db.sqlite3'),  # Fallback to SQLite locally
+        default='postgres://castle_user:securepassword@localhost:5432/castle_hotel',  # Local PostgreSQL
         conn_max_age=600,  # Keep database connections alive for 10 minutes
     )
 }
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
