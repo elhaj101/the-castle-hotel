@@ -1,15 +1,15 @@
 import os
-import dj_database_url
 from pathlib import Path
+import dj_database_url
 
 # Base directory
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Security settings
 SECRET_KEY = os.getenv('SECRET_KEY', 'your-secret-key')  # Use environment variable for security
-DEBUG = os.getenv('DEBUG', 'True') == 'False'  # Default to True, but set to False in production
+DEBUG = os.getenv('DEBUG', 'True') == 'True'  # Default to True, but set to False in production
+
 ALLOWED_HOSTS = [
-    'the-castle-hotel-d35174139c77.herokuapp.com',
     'localhost',
     '127.0.0.1',
 ]
@@ -66,14 +66,23 @@ TEMPLATES = [
 WSGI_APPLICATION = 'the_castle_hotel.wsgi.application'
 
 # Database
-# Use dj_database_url to parse DATABASE_URL from Heroku environment
-DATABASES = {
-    'default': dj_database_url.config(
-        default='postgres://castle_user:securepassword@localhost:5432/castle_hotel',  # Local PostgreSQL
-        conn_max_age=600,  # Keep database connections alive for 10 minutes
-    )
-}
-
+if os.getenv('DATABASE_URL'):  # Use Railway's database if DATABASE_URL is set
+    DATABASES = {
+        'default': dj_database_url.config(
+            conn_max_age=600,  # Keep database connections alive for 10 minutes
+        )
+    }
+else:  # Use local PostgreSQL for development
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'castle_hotel',
+            'USER': 'castle_user',
+            'PASSWORD': 'securepassword',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
+    }
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
