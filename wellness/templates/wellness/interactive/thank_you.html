@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="bg-white p-8 rounded shadow text-center">
+      <h1 class="text-2xl font-bold mb-4">Thank You!</h1>
+      <p>Your wellness appointment has been received.</p>
+      <a href="{% url 'wellness_list' %}" class="mt-4 inline-block text-blue-500 hover:underline">Back to Wellness</a>
+    </div>
+</div>
+{% endblock %}

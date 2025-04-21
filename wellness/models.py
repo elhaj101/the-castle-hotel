@@ -11,10 +11,10 @@ class Treatment(models.Model):
 
 
 class Appointment(models.Model):
-    guest = models.ForeignKey(User, on_delete=models.CASCADE)  # One-to-Many: A user can schedule multiple appointments
-    treatment = models.ForeignKey(Treatment, on_delete=models.CASCADE)  # One-to-Many: A treatment can be booked multiple times
+    guest = models.ForeignKey(User, on_delete=models.CASCADE)
+    reservation_name = models.CharField(max_length=100)  # Add this line
     appointment_date = models.DateField()
     appointment_time = models.TimeField()
 
     def __str__(self):
-        return f"Appointment for {self.guest.username} - {self.treatment.name} on {self.appointment_date} at {self.appointment_time}"
+        return f"Appointment for {self.reservation_name} ({self.guest.username}) on {self.appointment_date} at {self.appointment_time}"

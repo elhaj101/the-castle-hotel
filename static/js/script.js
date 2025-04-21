@@ -8,24 +8,30 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Modal functionality
-    var openBtn = document.getElementById('openReservationModal');
-    var modal = document.getElementById('reservationModal');
-    var closeBtn = document.querySelector('.modal .close');
+    // Reusable modal functionality
+    function setupModal(openBtnId, modalId) {
+        const openBtn = document.getElementById(openBtnId);
+        const modal = document.getElementById(modalId);
+        const closeBtn = modal ? modal.querySelector('.close') : null;
 
-    if (openBtn && modal) {
-        openBtn.onclick = function () {
-            modal.style.display = 'block';
-        };
-    }
-    if (closeBtn && modal) {
-        closeBtn.onclick = function () {
-            modal.style.display = 'none';
-        };
-    }
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+        if (openBtn && modal) {
+            openBtn.onclick = function () {
+                modal.style.display = 'block';
+            };
         }
+        if (closeBtn && modal) {
+            closeBtn.onclick = function () {
+                modal.style.display = 'none';
+            };
+        }
+        window.addEventListener('click', function (event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        });
     }
+
+    // Initialize modals
+    setupModal('openReservationModal', 'reservationModal');
+    setupModal('openWellnessModal', 'wellnessReservationModal');
 });

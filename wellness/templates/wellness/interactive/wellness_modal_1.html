@@ -1,0 +1,20 @@
+<div id="wellnessReservationModal" class="modal" style="display:none;">
+  <div class="modal-content" style="max-width:400px;margin:auto;padding:30px;position:relative;">
+    <form method="post" action="/wellness/book/">
+      {% csrf_token %}
+      <div style="margin-bottom:15px;">
+        <label for="reservation_name">Name:</label>
+        <input type="text" id="reservation_name" name="reservation_name" required>
+      </div>
+      <div style="margin-bottom:15px;">
+        <label for="appointment_date">Date:</label>
+        <input type="date" id="appointment_date" name="appointment_date" required min="{{ today }}">
+      </div>
+      <div style="margin-bottom:20px;">
+        <label for="appointment_time">Time:</label>
+        <input type="time" id="appointment_time" name="appointment_time" required min="08:00" max="21:00" step="1800">
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;">Book</button>
+    </form>
+  </div>
+</div>
