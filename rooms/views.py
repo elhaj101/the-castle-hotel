@@ -6,3 +6,7 @@ def room_list(request):
     rooms = Room.objects.filter(is_available=True)
     comments = Comment.objects.filter(page='rooms')
     return render(request, 'rooms/room_list.html', {'rooms': rooms, 'comments': comments})
+
+def reservation_list(request):
+    reservations = Reservation.objects.all()
+    return render(request, 'rooms/reservation_list.html', {'reservations': reservations})
