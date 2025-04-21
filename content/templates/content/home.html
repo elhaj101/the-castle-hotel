@@ -1,48 +1,45 @@
-{%extends 'base.html' %}
+{% extends 'base.html' %}
 {% block header %} The Castle Hotel  {% endblock %}
 {% block content %}
 
-   
 <div class="section22">
-  <p> 
-    <h1>Welcome to The Castle Hotel</h1>
-    <p>Experience luxury and comfort in the heart of the city.</p>
-    <p>Explore our exquisite rooms, indulge in gourmet dining, and rejuvenate at our wellness center.</p>
-    <p>Book your stay today!</p>
-    <p>Discover the perfect blend of elegance and relaxation at The Castle Hotel.</p>
-    <p>Whether you're here for business or leisure, we have everything you need for an unforgettable experience.</p>
-    <section><button type="button" id="point-1" class="btn btn-primary">Choose your experience</button>
-    </section>
-  </p> 
-   
+  <h1>Welcome to The Castle Hotel</h1>
+  <p>Experience luxury and comfort in the heart of the city.</p>
+  <p>Explore our exquisite rooms, indulge in gourmet dining, and rejuvenate at our wellness center.</p>
+  <p>Book your stay today!</p>
+  <p>Discover the perfect blend of elegance and relaxation at The Castle Hotel.</p>
+  <p>Whether you're here for business or leisure, we have everything you need for an unforgettable experience.</p>
+  <section>
+    <button type="button" id="point-1" class="btn btn-primary" data-scroll-to="point-2">
+      Choose your experience
+    </button>
+  </section>
 </div>
-<div class="section33"> <div class="circular-gallery">
+
+<div class="section33">
+  <div class="circular-gallery">
     <!-- Replace src with your image paths -->
     <div class="circular-gallery__orb">
-        <a href="{% url 'restaurant_list' %}" target="_blank">
-            <img src="../../../static/media/restaurant.jpg" alt="First Orb" class="circular-gallery__visual">
-        </a>
+      <a href="{% url 'restaurant_list' %}" target="_blank">
+        <img src="../../../static/media/restaurant.jpg" alt="First Orb" class="circular-gallery__visual">
+      </a>
     </div>
-    
     <div class="circular-gallery__orb">
-        <a href="{% url 'room_list' %}" target="_blank">
-            <img src="../../../static/media/room2.jpg" alt="First Orb" class="circular-gallery__visual">
-        </a>
+      <a href="{% url 'room_list' %}" target="_blank">
+        <img src="../../../static/media/room2.jpg" alt="First Orb" class="circular-gallery__visual">
+      </a>
     </div>
-    
     <div class="circular-gallery__orb">
-        <a href="{% url 'wellness_list' %}" target="_blank">
-            <img src="../../../static/media/spa1.jpg" alt="First Orb" class="circular-gallery__visual">
-        </a>
+      <a href="{% url 'wellness_list' %}" target="_blank">
+        <img src="../../../static/media/spa1.jpg" alt="First Orb" class="circular-gallery__visual">
+      </a>
     </div>
-</div>
-<section class="section-444">
+  </div>
+  <section class="section-444">
     <p style="font-size: 150%;">Book a table</p>
     <p id="point-2" style="font-size: 150%;">Book a stay</p>
     <p style="font-size: 150%;">Book session</p>
-</section>
-</section>
+  </section>
 </div>
 
 {% endblock %}
-

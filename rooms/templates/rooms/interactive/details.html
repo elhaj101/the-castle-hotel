@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
+    <h2 class="text-2xl font-bold mb-6 text-center">Guest Profile</h2>
+    {% if error %}
+      <div class="mb-4 p-3 bg-red-100 text-red-700 rounded">{{ error }}</div>
+    {% endif %}
+    <form method="post" action="">
+      {% csrf_token %}
+      <div class="mb-4">
+        <label for="first_name" class="block text-gray-700 font-semibold mb-2">First Name</label>
+        <input type="text" id="first_name" name="first_name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300" required>
+      </div>
+      <div class="mb-4">
+        <label for="last_name" class="block text-gray-700 font-semibold mb-2">Last Name</label>
+        <input type="text" id="last_name" name="last_name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300" required>
+      </div>
+      <div class="mb-4">
+        <label for="phone" class="block text-gray-700 font-semibold mb-2">Phone Number</label>
+        <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300" required>
+      </div>
+      <div class="mb-4">
+        <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
+        <input type="email" id="email" name="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300" required>
+      </div>
+      <div class="mb-4">
+        <label for="nationality" class="block text-gray-700 font-semibold mb-2">Nationality</label>
+        <input type="text" id="nationality" name="nationality" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300" required>
+      </div>
+      <div class="mb-6">
+        <span class="block text-gray-700 font-semibold mb-2">Children</span>
+        <label class="inline-flex items-center mr-4">
+          <input type="radio" class="form-radio text-blue-500" name="children" value="yes" required>
+          <span class="ml-2">Yes</span>
+        </label>
+        <label class="inline-flex items-center">
+          <input type="radio" class="form-radio text-blue-500" name="children" value="no" required>
+          <span class="ml-2">No</span>
+        </label>
+      </div>
+      <div class="mb-6">
+        <span class="block text-gray-700 font-semibold mb-2">Room Upgrades & Extras</span>
+        <label class="inline-flex items-center mb-2">
+          <input type="checkbox" class="form-checkbox text-blue-500" name="extras" value="airport_shuttle">
+          <span class="ml-2">Airport Shuttle</span>
+        </label><br>
+        <label class="inline-flex items-center mb-2">
+          <input type="checkbox" class="form-checkbox text-blue-500" name="extras" value="breakfast">
+          <span class="ml-2">Breakfast Included</span>
+        </label><br>
+        <label class="inline-flex items-center mb-2">
+          <input type="checkbox" class="form-checkbox text-blue-500" name="extras" value="early_checkin">
+          <span class="ml-2">Early Check-in</span>
+        </label><br>
+        <label class="inline-flex items-center mb-2">
+          <input type="checkbox" class="form-checkbox text-blue-500" name="extras" value="late_checkout">
+          <span class="ml-2">Late Check-out</span>
+        </label><br>
+        <label class="inline-flex items-center">
+          <input type="checkbox" class="form-checkbox text-blue-500" name="extras" value="room_with_view">
+          <span class="ml-2">Room with a View</span>
+        </label>
+      </div>
+      <div class="mb-4">
+        <label class="inline-flex items-center">
+          <input type="checkbox" class="form-checkbox text-blue-500" name="agree" required>
+          <span class="ml-2">I agree to store my information and be contacted by the company.</span>
+        </label>
+      </div>
+      <!-- Use context variables, not request.GET -->
+      <input type="hidden" name="room_type" value="{{ room_type }}">
+      <input type="hidden" name="check_in_date" value="{{ check_in_date }}">
+      <input type="hidden" name="check_out_date" value="{{ check_out_date }}">
+      <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition">Book This Room</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

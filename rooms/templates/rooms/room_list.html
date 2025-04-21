@@ -1,34 +1,70 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block header %} The Castle Hotel - Rooms {% endblock %}
 {% block content %}
 <div class="section22">
   <h1> We have a variety of booking options </h1>
-  <p> You can choose a single room or a double room or even a suit </p>
+  <p> You can choose a single room or a double room or even a suite </p>
+
+  <!-- Date Pickers -->
+  <div class="flex justify-center mb-6">
+    <input type="date" id="main_check_in_date" class="border rounded-lg px-3 py-2 mr-4" placeholder="Check-in date" required>
+    <input type="date" id="main_check_out_date" class="border rounded-lg px-3 py-2" placeholder="Check-out date" required>
+  </div>
+
   <div class="flex items-center justify-center">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
+      <!-- Double Room Card -->
       <div class="bg-white rounded-lg shadow-md overflow-hidden">
-        <img src="../../../static/media/room4.jpg" alt="Photo 1" class="w-full h-auto object-cover">
-        <p class="text-center mt-2 text-gray-700">Double Room</p>
+        <img src="{% static 'media/room4.jpg' %}" alt="Double Room" class="w-full h-auto object-cover">
+        <p class="text-center mt-2 text-gray-700 font-semibold">Double Room</p>
+        <p class="text-center text-gray-500 mb-2">
+          Price: ${{ double_room.price_per_night|default:"N/A" }}
+        </p>
+        <div class="flex justify-center mt-2">
+          <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 book-room-btn"
+                  data-room-type="Double Room"
+                  data-room-price="{{ double_room.price_per_night|default:"" }}"
+                  type="button">Book</button>
+        </div>
       </div>
+      <!-- Single Room Card -->
       <div class="bg-white rounded-lg shadow-md overflow-hidden">
-        <img src="../../../static/media/singleroom.jpg" alt="Photo 2" class="w-full h-auto object-cover">
-        <p class="text-center mt-2 text-gray-700">Single Room</p>
+        <img src="{% static 'media/singleroom.jpg' %}" alt="Single Room" class="w-full h-auto object-cover">
+        <p class="text-center mt-2 text-gray-700 font-semibold">Single Room</p>
+        <p class="text-center text-gray-500 mb-2">
+          Price: ${{ single_room.price_per_night|default:"N/A" }}
+        </p>
+        <div class="flex justify-center mt-2">
+          <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 book-room-btn"
+                  data-room-type="Single Room"
+                  data-room-price="{{ single_room.price_per_night|default:"" }}"
+                  type="button">Book</button>
+        </div>
       </div>
+      <!-- Suite Card -->
       <div class="bg-white rounded-lg shadow-md overflow-hidden">
-        <img src="../../../static/media/room1.jpg" alt="Photo 3" class="w-full h-auto object-cover">
-        <p class="text-center mt-2 text-gray-700">Suite</p>
+        <img src="{% static 'media/room1.jpg' %}" alt="Suite" class="w-full h-auto object-cover">
+        <p class="text-center mt-2 text-gray-700 font-semibold">Suite</p>
+        <p class="text-center text-gray-500 mb-2">
+          Price: ${{ suite.price_per_night|default:"N/A" }}
+        </p>
+        <div class="flex justify-center mt-2">
+          <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 book-room-btn"
+                  data-room-type="Suite"
+                  data-room-price="{{ suite.price_per_night|default:"" }}"
+                  type="button">Book</button>
+        </div>
       </div>
     </div>
   </div>
-  <div class="flex justify-center mt-4">
-    <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Book</button>
-  </div>
-</div>
-<div class="bg-white shadow-md rounded-lg p-6 my-6">
-  <!-- Comments Section -->
-  <h2 class="text-2xl font-semibold mb-4">Comments</h2>
 
-  <!-- Display Comments -->
+  {% include 'rooms/interactive/room_modal_1.html' %}
+</div>
+
+<!-- Comments Section -->
+<div class="bg-white shadow-md rounded-lg p-6 my-6">
+  <h2 class="text-2xl font-semibold mb-4">Comments</h2>
   <div class="space-y-4">
       {% for comment in comments %}
       <div class="border-b pb-4">
@@ -40,8 +76,6 @@
       <p class="text-gray-500">No comments yet. Be the first to comment!</p>
       {% endfor %}
   </div>
-
-  <!-- Add Comment Form -->
   {% if user.is_authenticated %}
   <form method="post" action="{% url 'add_comment' 'rooms' %}" class="mt-6">
       {% csrf_token %}
@@ -57,4 +91,3 @@
   {% endif %}
 </div>
 {% endblock %}
- 
