@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block header %} The Castle Hotel - Restaurant {% endblock %}
 {% block content %}
 <div class="section22">
@@ -10,8 +11,9 @@
 <p id="p11" style="font-size: 23px; color:red;"> We are open from 8:00 AM to 11:00 PM </p>
 <p id="p22" style="font-size: 23px;"> We are located on the ground floor of the hotel </p>
 <p id="p33" style="font-size: 23px;"> Please book your table by calling us through the number given below or by clicking on the reserve a table button </p>
-<section><button type="button"  class="btn btn-primary">Reserve your table</button>
-</section>
+<section>
+    <button type="button" id="openReservationModal" class="btn btn-primary">Reserve your table</button>
+  </section>
 <p id="p66" style="font-size: 23px;"> Thank you for choosing The Castle Hotel </p>
 </div>
 <div class="bg-white shadow-md rounded-lg p-6 my-6">
@@ -46,4 +48,7 @@
     </p>
     {% endif %}
 </div>
+
+{% include 'restaurant/interactive/restaurant_modal_1.html' %}
 {% endblock %}
+<script src="../../../static/js/script.js"></script>

@@ -27,7 +27,9 @@ body {
     margin: 0; /* Removes default margin */
 }
 
-
+.modal { display:none; position:fixed; z-index:1000; left:0; top:20%; width:100%; height:100%; overflow:auto; background:rgba(0,0,0,0.4);}
+    .modal-content { background:#fff; border-radius:8px; }
+    .close:hover { color:red; }
 
 .room-gallery {
     display: flex; /* Enables flexbox for room items */
