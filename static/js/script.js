@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Room reservation modal logic
-    const modal = document.getElementById('roomReservationModal');
-    const closeBtn = modal ? modal.querySelector('.close') : null;
+    const roomModal = document.getElementById('roomReservationModal');
+    const roomCloseBtn = roomModal ? roomModal.querySelector('.close') : null;
     const modalRoomType = document.getElementById('modal_room_type');
     const modalRoomPrice = document.getElementById('modal_room_price');
     const modalCheckIn = document.getElementById('modal_check_in');
@@ -13,23 +13,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Restaurant reservation modal logic
     const restaurantBtn = document.getElementById('openReservationModal');
-    if (restaurantBtn) {
+    const restaurantModal = document.getElementById('reservationModal');
+    if (restaurantBtn && restaurantModal) {
         restaurantBtn.addEventListener('click', function() {
-            const modal = document.getElementById('reservationModal');
-            if (modal) modal.style.display = 'block';
+            restaurantModal.style.display = 'block';
         });
     }
-
-    // Wellness reservation modal logic (event delegation)
-    document.body.addEventListener('click', function(e) {
-        if (e.target && e.target.id === 'openWellnessModal') {
-            const modal = document.getElementById('wellnessReservationModal');
-            if (modal) {
-                console.log("Wellness button clicked! (delegated)");
-                modal.style.display = 'block';
-            }
-        }
-    });
 
     // Room booking button logic
     document.querySelectorAll('.book-room-btn').forEach(function(btn) {
@@ -53,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             if (modalTotalPrice) modalTotalPrice.textContent = total;
 
-            if (modal) modal.style.display = 'block';
+            if (roomModal) roomModal.style.display = 'block';
 
             // Set up the Book button to pass all info to the details page
             if (bookDetailsLink) {
@@ -67,24 +56,29 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Room modal close logic
-    if (closeBtn && modal) {
-        closeBtn.onclick = function () {
-            modal.style.display = 'none';
+    if (roomCloseBtn && roomModal) {
+        roomCloseBtn.onclick = function () {
+            roomModal.style.display = 'none';
         };
     }
-    window.addEventListener('click', function (event) {
-        if (event.target == modal) {
-            modal.style.display = 'none';
+
+    // Restaurant modal close logic
+    if (restaurantModal) {
+        const restaurantCloseBtn = restaurantModal.querySelector('.close');
+        if (restaurantCloseBtn) {
+            restaurantCloseBtn.onclick = function () {
+                restaurantModal.style.display = 'none';
+            };
         }
-        // Restaurant modal close logic
-        const restaurantModal = document.getElementById('reservationModal');
+    }
+
+    // Click outside modal to close
+    window.addEventListener('click', function (event) {
+        if (roomModal && event.target == roomModal) {
+            roomModal.style.display = 'none';
+        }
         if (restaurantModal && event.target == restaurantModal) {
             restaurantModal.style.display = 'none';
-        }
-        // Wellness modal close logic
-        const wellnessModal = document.getElementById('wellnessReservationModal');
-        if (wellnessModal && event.target == wellnessModal) {
-            wellnessModal.style.display = 'none';
         }
     });
 
@@ -99,26 +93,4 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
-
-    // Restaurant modal close button logic (if you have a close button)
-    const restaurantModal = document.getElementById('reservationModal');
-    if (restaurantModal) {
-        const restaurantCloseBtn = restaurantModal.querySelector('.close');
-        if (restaurantCloseBtn) {
-            restaurantCloseBtn.onclick = function () {
-                restaurantModal.style.display = 'none';
-            };
-        }
-    }
-
-    // Wellness modal close button logic (if you have a close button)
-    const wellnessModal = document.getElementById('wellnessReservationModal');
-    if (wellnessModal) {
-        const wellnessCloseBtn = wellnessModal.querySelector('.close');
-        if (wellnessCloseBtn) {
-            wellnessCloseBtn.onclick = function () {
-                wellnessModal.style.display = 'none';
-            };
-        }
-    }
 });
