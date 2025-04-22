@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Room reservation modal logic
     const modal = document.getElementById('roomReservationModal');
     const closeBtn = modal ? modal.querySelector('.close') : null;
     const modalRoomType = document.getElementById('modal_room_type');
@@ -10,6 +11,25 @@ document.addEventListener('DOMContentLoaded', function () {
     const mainCheckOut = document.getElementById('main_check_out_date');
     const bookDetailsLink = document.getElementById('bookDetailsLink');
 
+    // Restaurant reservation modal logic
+    const restaurantBtn = document.getElementById('openReservationModal');
+    if (restaurantBtn) {
+        restaurantBtn.addEventListener('click', function() {
+            const modal = document.getElementById('reservationModal');
+            if (modal) modal.style.display = 'block';
+        });
+    }
+
+    // Wellness reservation modal logic
+    const wellnessBtn = document.getElementById('openWellnessModal');
+    if (wellnessBtn) {
+        wellnessBtn.addEventListener('click', function() {
+            const modal = document.getElementById('wellnessReservationModal');
+            if (modal) modal.style.display = 'block';
+        });
+    }
+
+    // Room booking button logic
     document.querySelectorAll('.book-room-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
             if (modalRoomType) modalRoomType.textContent = btn.getAttribute('data-room-type');
@@ -31,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             if (modalTotalPrice) modalTotalPrice.textContent = total;
 
-            modal.style.display = 'block';
+            if (modal) modal.style.display = 'block';
 
             // Set up the Book button to pass all info to the details page
             if (bookDetailsLink) {
@@ -44,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Room modal close logic
     if (closeBtn && modal) {
         closeBtn.onclick = function () {
             modal.style.display = 'none';
@@ -52,6 +73,16 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('click', function (event) {
         if (event.target == modal) {
             modal.style.display = 'none';
+        }
+        // Restaurant modal close logic
+        const restaurantModal = document.getElementById('reservationModal');
+        if (restaurantModal && event.target == restaurantModal) {
+            restaurantModal.style.display = 'none';
+        }
+        // Wellness modal close logic
+        const wellnessModal = document.getElementById('wellnessReservationModal');
+        if (wellnessModal && event.target == wellnessModal) {
+            wellnessModal.style.display = 'none';
         }
     });
 
@@ -66,4 +97,26 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    // Restaurant modal close button logic (if you have a close button)
+    const restaurantModal = document.getElementById('reservationModal');
+    if (restaurantModal) {
+        const restaurantCloseBtn = restaurantModal.querySelector('.close');
+        if (restaurantCloseBtn) {
+            restaurantCloseBtn.onclick = function () {
+                restaurantModal.style.display = 'none';
+            };
+        }
+    }
+
+    // Wellness modal close button logic (if you have a close button)
+    const wellnessModal = document.getElementById('wellnessReservationModal');
+    if (wellnessModal) {
+        const wellnessCloseBtn = wellnessModal.querySelector('.close');
+        if (wellnessCloseBtn) {
+            wellnessCloseBtn.onclick = function () {
+                wellnessModal.style.display = 'none';
+            };
+        }
+    }
 });
