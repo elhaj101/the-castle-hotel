@@ -147,8 +147,9 @@ a:hover {
 ;
     justify-content: center;
     gap: 12%;
-    padding: 20px;
+    padding: 1%;
     flex: 1;
+    margin-right: 2%;
 }
 
 .circular-gallery__orb {
@@ -203,7 +204,7 @@ a:hover {
     margin-bottom: 0rem;
     width: 100%;
     padding: 1%;
-    gap: 16%;
+    gap: 21%;
     justify-content: center;
 }
 
