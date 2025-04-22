@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Security settings
 SECRET_KEY = os.getenv('SECRET_KEY', 'your-secret-key')  # Use environment variable for security
-DEBUG = os.getenv('DEBUG', 'True') == 'False'  # Default to True, but set to False in production
+DEBUG = os.getenv('DEBUG', 'True') == 'True'  # Default to True, but set to False in production
 
 ALLOWED_HOSTS = [
     'the-castle-hotel-d35174139c77.herokuapp.com',
@@ -66,11 +66,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'the_castle_hotel.wsgi.application'
 
 # Database
-if os.getenv('DATABASE_URL'):  # Use Railway's database if DATABASE_URL is set
+if os.getenv('DATABASE_URL'):
     DATABASES = {
-        'default': dj_database_url.config(
-            conn_max_age=600,  # Keep database connections alive for 10 minutes
-        )
+        'default': dj_database_url.config(conn_max_age=600)
     }
 else:  # Use local PostgreSQL for development
     DATABASES = {
