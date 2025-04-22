@@ -20,7 +20,6 @@ def book_appointment(request):
         reservation_name = request.POST.get('reservation_name')
         appointment_date = request.POST.get('appointment_date')
         appointment_time = request.POST.get('appointment_time')
-        # Remove treatment logic
         exists = Appointment.objects.filter(
             appointment_date=appointment_date,
             appointment_time=appointment_time

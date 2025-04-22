@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
+from django.utils import timezone
 
 class Room(models.Model):
     room_number = models.CharField(max_length=10)
@@ -26,6 +28,14 @@ class Reservation(models.Model):
     extras = models.CharField(max_length=255, blank=True)
     agree = models.BooleanField(default=False)
     # Add other fields as needed
-    
+
+    def clean(self):
+        super().clean()
+        today = timezone.now().date()
+        if self.check_in_date < today:
+            raise ValidationError({'check_in_date': "Check-in date cannot be in the past."})
+        if self.check_out_date <= self.check_in_date:
+            raise ValidationError({'check_out_date': "Check-out date must be after check-in date."})
+
     def __str__(self):
         return f"Reservation by {self.guest.username} for Room {self.room.room_number}"

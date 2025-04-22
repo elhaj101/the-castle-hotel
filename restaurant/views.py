@@ -2,13 +2,17 @@ from django.shortcuts import render, redirect
 from .models import RestaurantTable, RestaurantReservation
 from comments.models import Comment
 from django.contrib.auth.decorators import login_required
-
-
+from django.utils import timezone
 
 def restaurant_list(request):
     tables = RestaurantTable.objects.all()
     comments = Comment.objects.filter(page='restaurant')
-    return render(request, 'restaurant/restaurant_list.html', {'tables': tables, 'comments': comments})
+    today = timezone.now().date().isoformat()
+    return render(request, 'restaurant/restaurant_list.html', {
+        'tables': tables,
+        'comments': comments,
+        'today': today,
+    })
 
 def restaurant_reservation_list(request):
     reservations = RestaurantReservation.objects.all()

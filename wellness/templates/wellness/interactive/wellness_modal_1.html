@@ -1,5 +1,7 @@
 <div id="wellnessReservationModal" class="modal" style="display:none;">
   <div class="modal-content" style="max-width:400px;margin:auto;padding:30px;position:relative;">
+    <span class="close" style="position:absolute;top:10px;right:15px;font-size:28px;cursor:pointer;">&times;</span>
+    <h2 style="margin-bottom:20px;text-align:center;">Book a Wellness Session</h2>
     <form method="post" action="/wellness/book/">
       {% csrf_token %}
       <div style="margin-bottom:15px;">

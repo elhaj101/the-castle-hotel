@@ -4,17 +4,20 @@ from .models import Room, Reservation
 from comments.models import Comment
 from django.contrib.auth.models import User
 import datetime
+from django.utils import timezone
 
 def room_list(request):
     double_room = Room.objects.filter(room_type="Double Room").first()
     single_room = Room.objects.filter(room_type="Single Room").first()
     suite = Room.objects.filter(room_type="Suite").first()
     comments = Comment.objects.filter(page='rooms')
+    today = timezone.now().date().isoformat()  # Add this line
     return render(request, 'rooms/room_list.html', {
         'double_room': double_room,
         'single_room': single_room,
         'suite': suite,
-        'comments': comments
+        'comments': comments,
+        'today': today,  # Add this line
     })
 
 @login_required
@@ -79,3 +82,10 @@ def room_details(request):
         'check_out_date': check_out_date,
         'available_room_type': available_room_type,
     })
+
+
+
+def your_view(request):
+    today = timezone.now().date().isoformat()
+    # ...other context...
+    return render(request, 'your_template.html', {'today': today})
