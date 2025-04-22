@@ -20,14 +20,16 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Wellness reservation modal logic
-    const wellnessBtn = document.getElementById('openWellnessModal');
-    if (wellnessBtn) {
-        wellnessBtn.addEventListener('click', function() {
+    // Wellness reservation modal logic (event delegation)
+    document.body.addEventListener('click', function(e) {
+        if (e.target && e.target.id === 'openWellnessModal') {
             const modal = document.getElementById('wellnessReservationModal');
-            if (modal) modal.style.display = 'block';
-        });
-    }
+            if (modal) {
+                console.log("Wellness button clicked! (delegated)");
+                modal.style.display = 'block';
+            }
+        }
+    });
 
     // Room booking button logic
     document.querySelectorAll('.book-room-btn').forEach(function(btn) {
