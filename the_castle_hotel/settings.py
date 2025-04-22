@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Security settings
 SECRET_KEY = os.getenv('SECRET_KEY', 'your-secret-key')  # Use environment variable for security
-DEBUG = os.getenv('DEBUG', 'True') == 'True'  # Default to True, but set to False in production
+DEBUG = os.getenv('DEBUG', 'True') == 'False'  # Default to True, but set to False in production
 
 ALLOWED_HOSTS = [
     'the-castle-hotel-d35174139c77.herokuapp.com',
