@@ -19,8 +19,8 @@
     <!-- Favicon (to fix the 404 error in your logs) -->
     <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 </head>
-<body>
-    
+<body class="font-semibold mb-4 font-serif">
+      
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'login' %}">Account</a>
@@ -49,7 +49,7 @@
 
  <div class="header"><header>{% block header %} The Castle Hotel  {% endblock %}</header></div>
 
-<main class="main">
+<main class="main ">
  {% block content %}
       
  {% endblock %}

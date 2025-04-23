@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const modal = document.getElementById('roomReservationModal');
-    const closeBtn = modal ? modal.querySelector('.close') : null;
+    // Room reservation modal logic
+    const roomModal = document.getElementById('roomReservationModal');
+    const roomCloseBtn = roomModal ? roomModal.querySelector('.close') : null;
     const modalRoomType = document.getElementById('modal_room_type');
     const modalRoomPrice = document.getElementById('modal_room_price');
     const modalCheckIn = document.getElementById('modal_check_in');
@@ -10,6 +11,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const mainCheckOut = document.getElementById('main_check_out_date');
     const bookDetailsLink = document.getElementById('bookDetailsLink');
 
+    
+    }
+
+    // Room booking button logic
     document.querySelectorAll('.book-room-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
             if (modalRoomType) modalRoomType.textContent = btn.getAttribute('data-room-type');
@@ -31,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             if (modalTotalPrice) modalTotalPrice.textContent = total;
 
-            modal.style.display = 'block';
+            if (roomModal) roomModal.style.display = 'block';
 
             // Set up the Book button to pass all info to the details page
             if (bookDetailsLink) {
@@ -44,14 +49,21 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    if (closeBtn && modal) {
-        closeBtn.onclick = function () {
-            modal.style.display = 'none';
+    // Room modal close logic
+    if (roomCloseBtn && roomModal) {
+        roomCloseBtn.onclick = function () {
+            roomModal.style.display = 'none';
         };
     }
+ }
+
+    // Click outside modal to close
     window.addEventListener('click', function (event) {
-        if (event.target == modal) {
-            modal.style.display = 'none';
+        if (roomModal && event.target == roomModal) {
+            roomModal.style.display = 'none';
+        }
+        if (restaurantModal && event.target == restaurantModal) {
+            restaurantModal.style.display = 'none';
         }
     });
 

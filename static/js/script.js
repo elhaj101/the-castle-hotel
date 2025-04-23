@@ -11,13 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const mainCheckOut = document.getElementById('main_check_out_date');
     const bookDetailsLink = document.getElementById('bookDetailsLink');
 
-    // Restaurant reservation modal logic
-    const restaurantBtn = document.getElementById('openReservationModal');
-    const restaurantModal = document.getElementById('reservationModal');
-    if (restaurantBtn && restaurantModal) {
-        restaurantBtn.addEventListener('click', function() {
-            restaurantModal.style.display = 'block';
-        });
+    
     }
 
     // Room booking button logic
@@ -61,16 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
             roomModal.style.display = 'none';
         };
     }
-
-    // Restaurant modal close logic
-    if (restaurantModal) {
-        const restaurantCloseBtn = restaurantModal.querySelector('.close');
-        if (restaurantCloseBtn) {
-            restaurantCloseBtn.onclick = function () {
-                restaurantModal.style.display = 'none';
-            };
-        }
-    }
+ }
 
     // Click outside modal to close
     window.addEventListener('click', function (event) {
