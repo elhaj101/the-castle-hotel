@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import CustomUserCreationForm
+from django.contrib.auth.decorators import login_required
+from comments.models import Comment
+from django.contrib.auth import logout
 
 def signup(request):
     if request.method == 'POST':
@@ -27,3 +30,19 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('home')
+
+
+
+
+@login_required
+def user_manage(request):
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        if action == 'delete_comments':
+            Comment.objects.filter(user=request.user).delete()
+        elif action == 'delete_account':
+            user = request.user           # Store the user object first
+            logout(request)               # Log out (clears session)
+            user.delete()                 # Now delete the user object
+        return redirect('login')
+    return redirect('login')
