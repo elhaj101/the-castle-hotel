@@ -11,9 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const mainCheckOut = document.getElementById('main_check_out_date');
     const bookDetailsLink = document.getElementById('bookDetailsLink');
 
-    
-    }
-
     // Room booking button logic
     document.querySelectorAll('.book-room-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
@@ -55,27 +52,14 @@ document.addEventListener('DOMContentLoaded', function () {
             roomModal.style.display = 'none';
         };
     }
- }
 
     // Click outside modal to close
     window.addEventListener('click', function (event) {
         if (roomModal && event.target == roomModal) {
             roomModal.style.display = 'none';
         }
-        if (restaurantModal && event.target == restaurantModal) {
+        if (typeof restaurantModal !== 'undefined' && restaurantModal && event.target == restaurantModal) {
             restaurantModal.style.display = 'none';
         }
-    });
-
-    // Smooth scroll for elements with data-scroll-to
-    document.querySelectorAll('[data-scroll-to]').forEach(function(link) {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = link.getAttribute('data-scroll-to');
-            const target = document.getElementById(targetId);
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
-            }
-        });
     });
 });
