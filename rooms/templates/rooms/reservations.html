@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block header %}My Reservations{% endblock %}
+{% block content %}
+<div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8 mt-10 mb-10">
+  <h1 class="text-2xl font-bold mb-6 text-center">My Reservations</h1>
+  {% if reservations %}
+    <div class="space-y-4">
+      {% for reservation in reservations %}
+        <div class="border rounded-lg p-4">
+          <p class="font-semibold">Room: {{ reservation.room.room_type }} ({{ reservation.room.room_number }})</p>
+          <p>Dates: {{ reservation.check_in_date }} → {{ reservation.check_out_date }}</p>
+          <p>Total: ${{ reservation.total_price }}</p>
+          <div class="mt-3 flex gap-3">
+            <a href="{% url 'reservation_edit' reservation.id %}" class="bg-blue-500 text-white px-3 py-2 rounded">Edit</a>
+            <a href="{% url 'reservation_delete' reservation.id %}" class="bg-red-500 text-white px-3 py-2 rounded">Delete</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="text-center text-gray-600">No reservations yet.</p>
+  {% endif %}
+</div>
+{% endblock %}

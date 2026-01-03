@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block header %}Edit Reservation{% endblock %}
+{% block content %}
+<div class="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-8 mt-10 mb-10">
+  <h1 class="text-2xl font-bold mb-6 text-center">Edit Reservation</h1>
+  {% if form.errors %}
+    <div class="mb-4 p-3 bg-red-100 text-red-700 rounded">
+      <ul>
+        {% for field, errors in form.errors.items %}
+          {% for error in errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+  <form method="post">
+    {% csrf_token %}
+    <div class="grid grid-cols-1 gap-4">
+      {{ form.as_p }}
+    </div>
+    <div class="mt-6 flex gap-3">
+      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
+      <a href="{% url 'reservation_list' %}" class="bg-gray-300 px-4 py-2 rounded">Cancel</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

@@ -14,16 +14,20 @@ document.addEventListener('DOMContentLoaded', function () {
     // Room booking button logic
     document.querySelectorAll('.book-room-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
+            const checkInVal = mainCheckIn ? mainCheckIn.value : '';
+            const checkOutVal = mainCheckOut ? mainCheckOut.value : '';
+            if (!checkInVal || !checkOutVal) {
+                alert('Please select both check-in and check-out dates.');
+                return;
+            }
             if (modalRoomType) modalRoomType.textContent = btn.getAttribute('data-room-type');
             if (modalRoomPrice) modalRoomPrice.textContent = "$" + btn.getAttribute('data-room-price');
-            if (modalCheckIn && mainCheckIn) modalCheckIn.textContent = mainCheckIn.value;
-            if (modalCheckOut && mainCheckOut) modalCheckOut.textContent = mainCheckOut.value;
+            if (modalCheckIn) modalCheckIn.textContent = checkInVal;
+            if (modalCheckOut) modalCheckOut.textContent = checkOutVal;
 
             // Calculate total price
             let total = '';
             const price = parseFloat(btn.getAttribute('data-room-price'));
-            const checkInVal = mainCheckIn.value;
-            const checkOutVal = mainCheckOut.value;
             if (checkInVal && checkOutVal && !isNaN(price)) {
                 const checkInDate = new Date(checkInVal);
                 const checkOutDate = new Date(checkOutVal);

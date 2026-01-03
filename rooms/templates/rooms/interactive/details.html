@@ -6,6 +6,17 @@
     {% if error %}
       <div class="mb-4 p-3 bg-red-100 text-red-700 rounded">{{ error }}</div>
     {% endif %}
+    {% if form and form.errors %}
+      <div class="mb-4 p-3 bg-red-100 text-red-700 rounded">
+        <ul>
+          {% for field, errors in form.errors.items %}
+            {% for error in errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
     <form method="post" action="">
       {% csrf_token %}
       <div class="mb-4">

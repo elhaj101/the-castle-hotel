@@ -1,10 +1,13 @@
+from decimal import Decimal
+
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-from .models import Room, Reservation
-from comments.models import Comment
-from django.contrib.auth.models import User
-import datetime
+from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
+
+from comments.models import Comment
+from .forms import ReservationForm
+from .models import Room, Reservation
 
 def room_list(request):
     double_room = Room.objects.filter(room_type="Double Room").first()
@@ -17,58 +20,49 @@ def room_list(request):
         'single_room': single_room,
         'suite': suite,
         'comments': comments,
-        'today': today,  # Add this line
+        'today': today,
     })
+
+
+@login_required
+def reservation_list(request):
+    reservations = (
+        Reservation.objects.filter(guest=request.user)
+        .select_related('room')
+        .order_by('-check_in_date')
+    )
+    return render(request, 'rooms/reservations.html', {'reservations': reservations})
+
 
 @login_required
 def room_details(request):
     if request.method == 'POST':
-        # Get all form data
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
-        phone = request.POST.get('phone')
-        email = request.POST.get('email')
-        nationality = request.POST.get('nationality')
-        children = request.POST.get('children')
-        extras = request.POST.getlist('extras')
-        agree = request.POST.get('agree')
         room_type = request.POST.get('room_type')
-        check_in_date = request.POST.get('check_in_date')
-        check_out_date = request.POST.get('check_out_date')
-
-        # Find an available room of the selected type
         room = Room.objects.filter(room_type=room_type, is_available=True).first()
+        form = ReservationForm(request.POST)
+
         if not room:
-            return render(request, 'rooms/interactive/details.html', {
-                'room_type': room_type,
-                'check_in_date': check_in_date,
-                'check_out_date': check_out_date,
-                'error': 'No available rooms of this type.'
-            })
+            form.add_error(None, 'No available rooms of this type.')
 
-        # Calculate total price
-        nights = (datetime.datetime.strptime(check_out_date, "%Y-%m-%d") - datetime.datetime.strptime(check_in_date, "%Y-%m-%d")).days
-        total_price = nights * float(room.price_per_night)
+        if form.is_valid() and room:
+            reservation = form.save(commit=False)
+            reservation.guest = request.user
+            reservation.room = room
+            nights = (reservation.check_out_date - reservation.check_in_date).days
+            reservation.total_price = Decimal(nights) * room.price_per_night
+            reservation.save()
+            room.is_available = False
+            room.save()
+            messages.success(request, 'Reservation created.')
+            return redirect('reservation_list')
 
-        # Save reservation (add extra fields as needed)
-        Reservation.objects.create(
-            guest=request.user,
-            room=room,
-            check_in_date=check_in_date,
-            check_out_date=check_out_date,
-            total_price=total_price,
-            first_name=first_name,
-            last_name=last_name,
-            phone=phone,
-            email=email,
-            nationality=nationality,
-            children=children,
-            extras=",".join(extras),  # or use a ManyToManyField if you want
-            agree=bool(agree),
-        )
-        room.is_available = False
-        room.save()
-        return redirect('room_list')
+        return render(request, 'rooms/interactive/details.html', {
+            'room_type': room_type,
+            'check_in_date': request.POST.get('check_in_date', ''),
+            'check_out_date': request.POST.get('check_out_date', ''),
+            'available_room_type': room.room_type if room else None,
+            'form': form,
+        })
 
     # For GET, pass booking info to the template and show available room type
     room_type = request.GET.get('room_type', '')
@@ -81,11 +75,41 @@ def room_details(request):
         'check_in_date': check_in_date,
         'check_out_date': check_out_date,
         'available_room_type': available_room_type,
+        'form': ReservationForm(initial={
+            'check_in_date': check_in_date or None,
+            'check_out_date': check_out_date or None,
+        }),
     })
 
 
+@login_required
+def reservation_edit(request, reservation_id):
+    reservation = get_object_or_404(Reservation, pk=reservation_id, guest=request.user)
+    if request.method == 'POST':
+        form = ReservationForm(request.POST, instance=reservation)
+        if form.is_valid():
+            reservation = form.save(commit=False)
+            nights = (reservation.check_out_date - reservation.check_in_date).days
+            reservation.total_price = Decimal(nights) * reservation.room.price_per_night
+            reservation.save()
+            messages.success(request, 'Reservation updated.')
+            return redirect('reservation_list')
+    else:
+        form = ReservationForm(instance=reservation)
+    return render(request, 'rooms/reservation_edit.html', {
+        'reservation': reservation,
+        'form': form,
+    })
 
-def your_view(request):
-    today = timezone.now().date().isoformat()
-    # ...other context...
-    return render(request, 'your_template.html', {'today': today})
+
+@login_required
+def reservation_delete(request, reservation_id):
+    reservation = get_object_or_404(Reservation, pk=reservation_id, guest=request.user)
+    if request.method == 'POST':
+        room = reservation.room
+        reservation.delete()
+        room.is_available = True
+        room.save()
+        messages.success(request, 'Reservation deleted.')
+        return redirect('reservation_list')
+    return render(request, 'rooms/reservation_confirm_delete.html', {'reservation': reservation})

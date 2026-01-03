@@ -10,6 +10,18 @@ A hotel website with booking features.
 
 <img src="screenshots/Screenshot 2025-04-24 at 03.52.25.png" alt="Wireframe 2" style="max-width:700px; width:100%; border:1px solid #ccc; margin-bottom:16px;" />
 
+## UX & Design Process
+
+- The landing page prioritizes a single call-to-action to guide users to booking.
+- Rooms are surfaced as quick cards so users can compare types and prices fast.
+- The reservation flow is split into a modal confirmation and a details form to reduce errors.
+- The navigation highlights primary tasks (Rooms, Contact, Account, Reservations).
+
+## Agile Planning
+
+- User stories and acceptance criteria are documented in `docs/user_stories.md`.
+- A lightweight sprint log is documented in `docs/sprint_plan.md`.
+
 
 
 ## User Features
@@ -64,6 +76,7 @@ The project is designed for easy deployment on Heroku, using the Heroku Postgres
 ### User Features
 - **Sign Up / Sign In:** Secure authentication system for user accounts.
 - **Room Booking:** Choose room type, select dates, and book available rooms.
+- **Reservation Management:** View, edit, and delete your reservations.
 - **Comment System:** Post and delete comments on rooms/pages.
 - **Profile Management:** Delete all comments or delete your account from the frontend.
 - **Responsive UI:** Works on desktop and mobile devices.
@@ -100,6 +113,7 @@ the-castle-hotel/
 ├── rooms/            # Room models, booking, and reservation logic
 ├── static/           # Static files (CSS, JS, images)
 ├── templates/        # HTML templates (base, login, room list, etc.)
+├── docs/             # Agile planning, user stories, sprint notes
 ├── data.json         # Sample data for initial load/backup
 ├── schema.sql        # SQL schema for PostgreSQL
 ├── manage.py         # Django management script
@@ -108,6 +122,16 @@ the-castle-hotel/
 ├── README.md         # This file
 └── ...               # Other standard Django files
 ```
+
+---
+
+## Data Model (ER Summary)
+
+| Model        | Fields (key)                                                                 |
+|--------------|-------------------------------------------------------------------------------|
+| Room         | room_number, room_type, price_per_night, is_available                         |
+| Reservation  | guest(FK), room(FK), check_in_date, check_out_date, total_price, guest details |
+| Comment      | user(FK), text, page, created_at                                              |
 
 ---
 
@@ -200,6 +224,19 @@ the-castle-hotel/
 - **Tailwind CSS** and **Bootstrap 5** are both used for rapid, responsive UI development.
 - Custom styles are in `static/css/style.css`.
 - **JavaScript** (`static/js/script.js`) powers modals, booking forms, and UI interactivity.
+
+---
+## Testing
+
+### Automated (Python)
+- `python manage.py test`
+- Core coverage: reservations create/edit/delete, login required checks.
+
+### Manual (JavaScript / UI)
+- Booking modal opens and shows room type, price, and dates.
+- Total price updates when dates change.
+- “Book” button routes to details page with query params.
+- Reservation create/edit/delete flows display success messages.
 
 ---
 ## Debugging Checklist

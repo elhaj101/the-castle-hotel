@@ -5,6 +5,11 @@
 <div class="section22">
   <h1> We have a variety of booking options </h1>
   <p> You can choose a single room or a double room or even a suite </p>
+  {% if user.is_authenticated %}
+    <p class="mt-2"><a href="{% url 'reservation_list' %}" class="text-blue-600 hover:underline">View my reservations</a></p>
+  {% else %}
+    <p class="mt-2"><a href="{% url 'login' %}" class="text-blue-600 hover:underline">Log in to manage reservations</a></p>
+  {% endif %}
 
   <!-- Date Pickers -->
   <div class="flex justify-center mb-6">
