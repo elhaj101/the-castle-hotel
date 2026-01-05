@@ -1,5 +1,7 @@
 # The Castle Hotel
 
+The Castle Hotel is a full-stack Django web application for a hotel booking experience, letting guests browse rooms, see date-based pricing, and manage reservations while administrators manage rooms, bookings, and guest data. The goal is to deliver a clear, responsive booking flow and demonstrate end-to-end CRUD, authentication, and deployment practices for a real-world hospitality project.
+
 A hotel website with booking features.
 
 
