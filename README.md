@@ -40,7 +40,7 @@ choose a room type and choose dates to know its price
 
 # The Castle Hotel
 
-A modern hotel booking web application built with Django, PostgreSQL, Tailwind CSS, Bootstrap, and JavaScript.
+A modern hotel booking web application built with Django, MySQL, Tailwind CSS, Bootstrap, and JavaScript.
 
 ---
 
@@ -54,7 +54,7 @@ A modern hotel booking web application built with Django, PostgreSQL, Tailwind C
 - View dynamic room pricing based on selected dates
 - Enjoy a responsive, visually appealing interface
 
-The project is designed for easy deployment on Heroku, using the Heroku Postgres add-on for production data storage.
+The project is designed for easy deployment on Heroku, using a managed MySQL database for production data storage.
 
 ---
 ## Screenshots
@@ -96,7 +96,7 @@ The project is designed for easy deployment on Heroku, using the Heroku Postgres
 ## Tech Stack
 
 - **Backend:** Django (Python)
-- **Database:** PostgreSQL (Heroku Postgres add-on in production), SQLite for local/dev, schema in `schema.sql`
+- **Database:** MySQL (local and production), optional `DATABASE_URL` override
 - **Frontend:** Tailwind CSS, Bootstrap 5, custom CSS (`static/css/style.css`)
 - **JavaScript:** For modals, booking UI, and interactive features (`static/js/script.js`)
 - **Deployment:** Heroku (with `Procfile` and `requirements.txt`)
@@ -117,7 +117,7 @@ the-castle-hotel/
 ├── templates/        # HTML templates (base, login, room list, etc.)
 ├── docs/             # Agile planning, user stories, sprint notes
 ├── data.json         # Sample data for initial load/backup
-├── schema.sql        # SQL schema for PostgreSQL
+├── schema.sql        # SQL schema reference (legacy)
 ├── manage.py         # Django management script
 ├── requirements.txt  # Python dependencies
 ├── Procfile          # Heroku deployment config
@@ -157,9 +157,15 @@ the-castle-hotel/
     ```
 
 4. **Set Up Environment Variables**
+    Create your MySQL database and set these environment variables:
     - `SECRET_KEY`
     - `DEBUG`
-    - `DATABASE_URL` (for production/Postgres)
+    - `MYSQL_DATABASE`
+    - `MYSQL_USER`
+    - `MYSQL_PASSWORD`
+    - `MYSQL_HOST`
+    - `MYSQL_PORT`
+    - `DATABASE_URL` (optional override)
 
 5. **Run Migrations**
     ```bash
@@ -194,14 +200,18 @@ the-castle-hotel/
       ```
     - Make sure `requirements.txt` is up to date.
 
-2. **Provision the Heroku Postgres Add-on:**
-    ```bash
-    heroku addons:create heroku-postgresql:hobby-dev
-    ```
+2. **Provision a MySQL database (Heroku add-on or external):**
+    - Create the database and note the host, port, user, password, and database name.
 
 3. **Set environment variables on Heroku:**
     - `SECRET_KEY`
     - `DEBUG` (set to `False` in production)
+    - `MYSQL_DATABASE`
+    - `MYSQL_USER`
+    - `MYSQL_PASSWORD`
+    - `MYSQL_HOST`
+    - `MYSQL_PORT`
+    - `DATABASE_URL` (optional override)
 
 4. **Deploy:**
     ```bash
@@ -261,7 +271,7 @@ the-castle-hotel/
 | Dependencies     | All required packages are installed                                   |
 | Migrations       | All migrations are applied                                            |
 | Backup           | Database and data backups exist                                       |
-| Heroku Add-ons   | Heroku Postgres add-on is attached and configured                     |
+| Heroku Add-ons   | MySQL add-on or managed MySQL is attached and configured              |
 | Session/Cookies  | Sessions and cookies work for login/logout                            |
 | CSRF Protection  | All forms are protected with `{% csrf_token %}`                       |
 | README           | README is up to date and clear                                        |
@@ -275,7 +285,7 @@ the-castle-hotel/
 | Area             | Service / Technology Used                          |
 |------------------|---------------------------------------------------|
 | Environment      | Heroku (deployment), local dev environment        |
-| Database         | Heroku Postgres (production), SQLite3 (fallback)  |
+| Database         | MySQL (production and local)                      |
 | Static Files     | Whitenoise, Django staticfiles, Heroku CDN        |
 | URLs             | Django URL dispatcher                             |
 | Templates        | Django Templates                                  |
@@ -290,7 +300,7 @@ the-castle-hotel/
 | Dependencies     | requirements.txt, pip                             |
 | Migrations       | Django migrations                                 |
 | Backup           | data.json, db.sqlite3                             |
-| Heroku Add-ons   | Heroku Postgres                                   |
+| Heroku Add-ons   | MySQL add-on (if using Heroku)                    |
 | Session/Cookies  | Django sessions, browser cookies                  |
 | CSRF Protection  | Django CSRF middleware                            |
 | README           | Markdown, GitHub                                  |
@@ -303,7 +313,7 @@ the-castle-hotel/
 ## Development Notes
 
 - Originally, the project included wellness and restaurant apps, but these were removed for focus and simplicity.
-- The database was migrated from Railway to Heroku Postgres due to compatibility and reliability.
+- The database was migrated from Railway to a managed MySQL instance due to compatibility and reliability.
 - All forms are protected with CSRF tokens.
 - The project is structured for easy extension and maintenance.
 
