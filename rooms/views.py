@@ -48,11 +48,27 @@ def room_details(request):
             reservation = form.save(commit=False)
             reservation.guest = request.user
             reservation.room = room
+            
+            # Check for availability (overlap)
+            if Reservation.objects.filter(
+                room=room,
+                check_in_date__lt=reservation.check_out_date,
+                check_out_date__gt=reservation.check_in_date
+            ).exists():
+                messages.error(request, "This room is already reserved for the selected dates.")
+                return render(request, 'rooms/interactive/details.html', {
+                    'room_type': room_type,
+                    'check_in_date': request.POST.get('check_in_date', ''),
+                    'check_out_date': request.POST.get('check_out_date', ''),
+                    'available_room_type': room.room_type if room else None,
+                    'form': form,
+                })
+
             nights = (reservation.check_out_date - reservation.check_in_date).days
             reservation.total_price = Decimal(nights) * room.price_per_night
             reservation.save()
-            room.is_available = False
-            room.save()
+            # We do NOT set room.is_available = False anymore, as that locks it forever.
+            
             messages.success(request, 'Reservation created.')
             return redirect('reservation_list')
 

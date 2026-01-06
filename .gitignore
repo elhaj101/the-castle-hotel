@@ -1,6 +1,25 @@
-staticfiles/media/*.mp4
-staticfiles/media/*.mp4
-staticfiles/media/*.mp4
-staticfiles
-venv
-[db.sqlite3](http://_vscodecontentref_/7)
+# General
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Editor
+.vscode/
+.idea/

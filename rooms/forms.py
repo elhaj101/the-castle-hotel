@@ -11,17 +11,13 @@ class ReservationForm(forms.ModelForm):
         ('late_checkout', 'Late Check-out'),
         ('room_with_view', 'Room with a View'),
     ]
-    CHILDREN_CHOICES = [
-        ('yes', 'Yes'),
-        ('no', 'No'),
-    ]
 
     extras = forms.MultipleChoiceField(
         required=False,
         choices=EXTRAS_CHOICES,
         widget=forms.CheckboxSelectMultiple,
     )
-    children = forms.ChoiceField(choices=CHILDREN_CHOICES, widget=forms.RadioSelect)
+    # children field will be automatically generated from model (PositiveSmallIntegerField)
 
     class Meta:
         model = Reservation

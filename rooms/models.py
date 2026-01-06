@@ -24,7 +24,7 @@ class Reservation(models.Model):
     phone = models.CharField(max_length=20)
     email = models.EmailField()
     nationality = models.CharField(max_length=100)
-    children = models.CharField(max_length=10)
+    children = models.PositiveSmallIntegerField(default=0)
     extras = models.CharField(max_length=255, blank=True)
     agree = models.BooleanField(default=False)
     # Add other fields as needed
