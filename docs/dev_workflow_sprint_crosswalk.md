@@ -76,7 +76,7 @@ This crosswalk maps every item in `docs/sprint_plan.md` to its matching step in
 ## Sprint 7 - Deployment and Final QA (LO6)
 | Sprint Plan Item | Dev Workflow Step |
 | --- | --- |
-| Verify SECRET_KEY, DEBUG, DATABASE_URL handling. | Sprint 7 - Deployment and Final QA (LO6) -> Verify SECRET_KEY, DEBUG, DATABASE_URL handling. |
+| Verify SECRET_KEY, DEBUG, MYSQL_* handling. | Sprint 7 - Deployment and Final QA (LO6) -> Verify SECRET_KEY, DEBUG, MYSQL_* handling. |
 | Ensure Procfile, requirements.txt, and static config are correct. | Sprint 7 - Deployment and Final QA (LO6) -> Ensure Procfile, requirements.txt, and static config are correct. |
 | Run migrations and collectstatic in production flow. | Sprint 7 - Deployment and Final QA (LO6) -> Run migrations and collectstatic in production flow. |
 | Check for broken links, commented-out code, and missing templates. | Sprint 7 - Deployment and Final QA (LO6) -> Check for broken links, commented-out code, and missing templates. |

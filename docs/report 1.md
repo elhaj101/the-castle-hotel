@@ -23,8 +23,8 @@ This report outlines discrepancies between the current project implementation an
 - **Alignment Failure**: Violates "ensure... DEBUG mode is turned off" for deployment.
 
 ### Database Configuration
-- **Issue**: `settings.py` only configures SQLite (`django.db.backends.sqlite3`). There is no configuration for PostgreSQL, despite the README stating: "The database was migrated from Railway to Heroku Postgres".
-- **Alignment Failure**: Discrepancy between documentation and code; limits deployment readiness.
+- **Status**: `settings.py` configures MySQL via `MYSQL_*` environment variables.
+- **Alignment**: Matches the README guidance for a managed MySQL database in production.
 
 ## 3. Testing (LO4)
 ### Missing Test Coverage
@@ -33,10 +33,10 @@ This report outlines discrepancies between the current project implementation an
 
 ## 4. Documentation & Best Practices (LO1, LO5)
 - **Code Comments**: Some complex logic (e.g., date overlap checks, which are actually missing in the model) lacks explanatory comments.
-- **README Alignment**: The README mentions "Heroku Postgres add-on" but the code does not support it out-of-the-box without manual `settings.py` changes.
+- **README Alignment**: The README and settings now align on MySQL; ensure deployment env vars are set.
 
 ## Recommendations
 1.  **Refactor Booking Logic**: Remove `is_available` from the `Room` model or decoupling it from reservations. Implement date-range overlap checks in `Reservation.clean()` or the view to determine availability.
-2.  **Secure Settings**: Use `os.environ.get()` for `SECRET_KEY`, `DEBUG`, and `DATABASE_URL` (using `dj_database_url` or similar).
+2.  **Secure Settings**: Use `os.environ.get()` for `SECRET_KEY`, `DEBUG`, and `MYSQL_*` database settings.
 3.  **Implement Tests**: Add unit tests for the Comments app.
 4.  **Fix Data Model**: Change `children` to `IntegerField` for better validation.

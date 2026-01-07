@@ -65,7 +65,7 @@ feature is verified end-to-end before production work begins.
 - Confirm Git commit history uses descriptive messages.
 
 ## Sprint 7 - Deployment and Final QA (LO6)
-- Verify SECRET_KEY, DEBUG, DATABASE_URL handling.
+- Verify SECRET_KEY, DEBUG, MYSQL_* handling.
 - Ensure Procfile, requirements.txt, and static config are correct.
 - Run migrations and collectstatic in production flow.
 - Check for broken links, commented-out code, and missing templates.

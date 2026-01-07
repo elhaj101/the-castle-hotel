@@ -1,10 +1,11 @@
 import os
 from pathlib import Path
 
-import dj_database_url
+from dotenv import load_dotenv
 
 # Base directory
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / ".env")
 
 # Security settings
 SECRET_KEY = os.environ.get('SECRET_KEY', 'dev-only-secret-key-change-me')
@@ -66,13 +67,27 @@ TEMPLATES = [
 WSGI_APPLICATION = 'the_castle_hotel.wsgi.application'
 
 # Database
-# Use dj_database_url to support Heroku Postgres + local SQLite fallback
+# MySQL configuration via environment variables
 DATABASES = {
-    'default': dj_database_url.config(
-        default='sqlite:///' + str(BASE_DIR / 'db.sqlite3'),
-        conn_max_age=600
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
+if os.environ.get('MYSQL_DATABASE'):
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.environ.get('MYSQL_DATABASE'),
+        'USER': os.environ.get('MYSQL_USER'),
+        'PASSWORD': os.environ.get('MYSQL_PASSWORD'),
+        'HOST': os.environ.get('MYSQL_HOST', 'localhost'),
+        'PORT': os.environ.get('MYSQL_PORT', '3306'),
+        'CONN_MAX_AGE': 600,
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+        },
+    }
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [

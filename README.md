@@ -96,7 +96,7 @@ The project is designed for easy deployment on Heroku, using a managed MySQL dat
 ## Tech Stack
 
 - **Backend:** Django (Python)
-- **Database:** MySQL (local and production), optional `DATABASE_URL` override
+- **Database:** MySQL (local and production)
 - **Frontend:** Tailwind CSS, Bootstrap 5, custom CSS (`static/css/style.css`)
 - **JavaScript:** For modals, booking UI, and interactive features (`static/js/script.js`)
 - **Deployment:** Heroku (with `Procfile` and `requirements.txt`)
@@ -165,7 +165,6 @@ the-castle-hotel/
     - `MYSQL_PASSWORD`
     - `MYSQL_HOST`
     - `MYSQL_PORT`
-    - `DATABASE_URL` (optional override)
 
 5. **Run Migrations**
     ```bash
@@ -211,7 +210,6 @@ the-castle-hotel/
     - `MYSQL_PASSWORD`
     - `MYSQL_HOST`
     - `MYSQL_PORT`
-    - `DATABASE_URL` (optional override)
 
 4. **Deploy:**
     ```bash
