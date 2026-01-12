@@ -1,25 +1,128 @@
 {% extends 'base.html' %}
-{% block header %} The Castle Hotel  {% endblock %}
+{% load static %}
+
 {% block content %}
+<!-- Hero Section -->
+<section class="relative">
+  <div
+    class="relative flex min-h-[500px] md:min-h-[600px] flex-col gap-6 bg-cover bg-center bg-no-repeat items-center justify-center p-8"
+    style="background-image: linear-gradient(rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%), url('{% static 'media/luxury-hotel-lobby-blurred-hyperrealistic-8k-image_1124848-129080.avif' %}');">
+    <div class="flex flex-col gap-4 text-center max-w-[720px]">
+      <h1
+        class="text-white text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-[-0.033em] drop-shadow-lg">
+        Welcome to the Castle Hotel
+      </h1>
+      <h2 class="text-white/90 text-base md:text-lg lg:text-xl font-medium leading-relaxed drop-shadow-md">
+        Experience luxury and comfort in the heart of the city. Discover a sanctuary where modern elegance meets
+        timeless tradition.
+      </h2>
+    </div>
+    <a href="{% url 'room_list' %}"
+      class="flex mt-6 min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-primary hover:bg-blue-700 transition-colors text-white text-base font-bold leading-normal tracking-[0.015em] shadow-lg hover:shadow-xl hover:-translate-y-0.5 transform duration-200">
+      <span class="truncate">View Rooms</span>
+    </a>
+  </div>
+</section>
 
-<div class="first-div"> </div>
+<!-- Services Section -->
+<section class="py-12 md:py-16 px-4 md:px-10 lg:px-20 bg-background-light">
+  <div class="max-w-[1200px] mx-auto flex flex-col gap-8 md:gap-12">
+    <!-- Headline -->
+    <div class="flex flex-col items-center gap-2">
+      <span class="text-primary font-bold tracking-wider uppercase text-sm">Amenities</span>
+      <h2 class="text-[#111318] tracking-tight text-2xl md:text-3xl lg:text-4xl font-bold leading-tight text-center">
+        Our Services
+      </h2>
+      <div class="h-1 w-20 bg-primary rounded-full mt-2"></div>
+    </div>
 
-<div class="second-div font-semibold font-serif">
-  <h1>Welcome to the Castle Hotel</h1>
-  <p>Experience luxury and comfort in the heart of the city.</p>
-  <p>Our hotel offers a range of amenities and services to make your stay unforgettable.</p>
-  <p>Whether you're here for business or leisure, we have everything you need for a perfect getaway.</p>
-  <br><br>
-  <strong>Our Services:</strong>
-  <ul>
-    <li>Luxurious Rooms</li>
-    <li>Fine Dining Restaurant</li>
-    <li>Spa and Wellness Center</li>
-    <li>Conference and Event Facilities</li>
-    <li>24/7 Room Service</li>
-  </ul>
-</div>
-<div class="third-div text-center ">
-  <h2 class="text-2xl font-semibold mb-4 font-serif">What are you waiting for?</h2>
-  <a href="/rooms" class="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition font-medium text-center" style="font-size: 1.5rem; display: block; width: fit-content; margin: 0 auto;">View Rooms</a></div>
+    <!-- Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-6">
+      <!-- Card 1 -->
+      <div
+        class="group flex flex-1 gap-4 rounded-xl p-6 flex-col shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-blue-500 to-blue-700 text-white">
+        <div
+          class="bg-white/20 backdrop-blur-sm w-12 h-12 rounded-lg flex items-center justify-center group-hover:bg-white/30 transition-colors duration-300">
+          <span class="material-symbols-outlined text-[28px]">bed</span>
+        </div>
+        <div class="flex flex-col gap-2">
+          <h3 class="text-white text-lg font-bold leading-tight">Luxurious Rooms</h3>
+          <p class="text-white/90 text-sm font-normal leading-normal">Elegant suites with city views and premium
+            bedding.</p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div
+        class="group flex flex-1 gap-4 rounded-xl p-6 flex-col shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-purple-500 to-purple-700 text-white">
+        <div
+          class="bg-white/20 backdrop-blur-sm w-12 h-12 rounded-lg flex items-center justify-center group-hover:bg-white/30 transition-colors duration-300">
+          <span class="material-symbols-outlined text-[28px]">restaurant</span>
+        </div>
+        <div class="flex flex-col gap-2">
+          <h3 class="text-white text-lg font-bold leading-tight">Fine Dining</h3>
+          <p class="text-white/90 text-sm font-normal leading-normal">Gourmet dishes from world-class chefs.</p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div
+        class="group flex flex-1 gap-4 rounded-xl p-6 flex-col shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-pink-500 to-rose-600 text-white">
+        <div
+          class="bg-white/20 backdrop-blur-sm w-12 h-12 rounded-lg flex items-center justify-center group-hover:bg-white/30 transition-colors duration-300">
+          <span class="material-symbols-outlined text-[28px]">spa</span>
+        </div>
+        <div class="flex flex-col gap-2">
+          <h3 class="text-white text-lg font-bold leading-tight">Spa & Wellness</h3>
+          <p class="text-white/90 text-sm font-normal leading-normal">Relaxing treatments, massages, and sauna.</p>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div
+        class="group flex flex-1 gap-4 rounded-xl p-6 flex-col shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-teal-500 to-cyan-600 text-white">
+        <div
+          class="bg-white/20 backdrop-blur-sm w-12 h-12 rounded-lg flex items-center justify-center group-hover:bg-white/30 transition-colors duration-300">
+          <span class="material-symbols-outlined text-[28px]">meeting_room</span>
+        </div>
+        <div class="flex flex-col gap-2">
+          <h3 class="text-white text-lg font-bold leading-tight">Conference Halls</h3>
+          <p class="text-white/90 text-sm font-normal leading-normal">Modern spaces for business events and meetings.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div
+        class="group flex flex-1 gap-4 rounded-xl p-6 flex-col shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-orange-500 to-amber-600 text-white">
+        <div
+          class="bg-white/20 backdrop-blur-sm w-12 h-12 rounded-lg flex items-center justify-center group-hover:bg-white/30 transition-colors duration-300">
+          <span class="material-symbols-outlined text-[28px]">room_service</span>
+        </div>
+        <div class="flex flex-col gap-2">
+          <h3 class="text-white text-lg font-bold leading-tight">24/7 Room Service</h3>
+          <p class="text-white/90 text-sm font-normal leading-normal">Round-the-clock service for your every need.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Secondary CTA Section -->
+<section class="grid grid-cols-1 md:grid-cols-2 h-auto md:h-[500px]">
+  <div class="relative bg-cover bg-center h-[300px] md:h-full order-2 md:order-1"
+    style="background-image: url('{% static 'media/room1.jpg' %}');">
+  </div>
+  <div class="flex flex-col justify-center p-8 md:p-12 lg:p-20 bg-white order-1 md:order-2">
+    <h3 class="text-2xl md:text-3xl font-bold mb-4 text-[#111318]">A Stay to Remember</h3>
+    <p class="text-gray-600 text-base md:text-lg mb-8 leading-relaxed">
+      Whether you are traveling for business or leisure, The Castle Hotel offers an unparalleled experience. Immerse
+      yourself in our world of refined luxury.
+    </p>
+    <a href="{% url 'room_list' %}" class="text-primary font-bold text-lg hover:underline flex items-center gap-2">
+      Book Your Stay Now
+      <span class="material-symbols-outlined text-sm">arrow_forward</span>
+    </a>
+  </div>
+</section>
 {% endblock %}

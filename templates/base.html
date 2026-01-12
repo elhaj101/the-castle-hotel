@@ -1,131 +1,158 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}
-      The Castle Hotel
-       {% endblock %}</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}The Castle Hotel{% endblock %}</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
 
-    <!-- Bootstrap CSS (CDN) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <!-- Custom CSS (optional) -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#1152d4",
+            "background-light": "#f6f6f8",
+          },
+          fontFamily: {
+            "display": ["Manrope", "sans-serif"]
+          },
+        },
+      },
+    }
+  </script>
 
-    <!-- Favicon (to fix the 404 error in your logs) -->
-    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+  <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-<body class="font-semibold mb-4 font-serif">
-      
-    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}">The Castle Hotel</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'room_list' %}">Rooms</a>
-                    </li>
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'reservation_list' %}">My Reservations</a>
-                    </li>
-                    {% if user.is_staff %}
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'admin:index' %}">Admin</a>
-                    </li>
-                    {% endif %}
-                    {% endif %}
-                    <li class="nav-item">
-                    </li>
-                    <li class="nav-item">
-                    </li>
-                    <a class="nav-link active" aria-current="page" href="{% url 'contact' %}">Contact Us</a>
 
-                </ul>
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <span class="nav-link">Signed in as {{ user.username }}</span>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'logout' %}">Log Out</a>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'login' %}">Log In</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'signup' %}">Sign Up</a>
-                    </li>
-                    {% endif %}
-                </ul>
-            </div>
+<body class="bg-background-light font-display text-[#111318] antialiased">
+  <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+
+    <!-- Navigation -->
+    <header
+      class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f0f2f4] bg-white/95 backdrop-blur px-4 md:px-10 py-3">
+      <div class="flex items-center gap-4 text-[#111318]">
+        <div class="size-8 text-primary">
+          <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M17 11V3H7v4H3v14h18V11h-4zm-8 4h2v2H9v-2zm2-4H9V9h2v2zm-2-4H7V5h2v2zm4 4h-2V9h2v2zm2 4h-2v-2h2v2zm-2-4h-2V5h2v6zM5 19v-6h2v6H5z">
+            </path>
+          </svg>
         </div>
-    </nav>
+        <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">The Castle Hotel</h2>
+      </div>
 
- <div class="header"><header>{% block header %} The Castle Hotel  {% endblock %}</header></div>
+      <div class="flex flex-1 justify-end gap-4 md:gap-8 items-center">
+        <nav class="hidden md:flex items-center gap-6 lg:gap-9">
+          <a class="text-sm font-medium leading-normal text-[#111318] hover:text-primary transition-colors"
+            href="{% url 'home' %}">Home</a>
+          <a class="text-sm font-medium leading-normal text-[#111318] hover:text-primary transition-colors"
+            href="{% url 'room_list' %}">Rooms</a>
+          {% if user.is_authenticated %}
+          <a class="text-sm font-medium leading-normal text-[#111318] hover:text-primary transition-colors"
+            href="{% url 'reservation_list' %}">My Reservations</a>
+          {% endif %}
+          <a class="text-sm font-medium leading-normal text-[#111318] hover:text-primary transition-colors"
+            href="{% url 'contact' %}">Contact</a>
+        </nav>
 
-<main class="main ">
- {% if messages %}
-  <div class="container mt-4">
-    {% for message in messages %}
-      {% if message.tags == 'error' %}
-        <div class="alert alert-danger">{{ message }}</div>
-      {% else %}
-        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-      {% endif %}
-    {% endfor %}
-  </div>
- {% endif %}
- {% block content %}
-      
- {% endblock %}
-</main>
-<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top" style="width: 90%;">
-    <div class="col-md-4 d-flex align-items-center">
-      <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1" aria-label="Bootstrap">
-        <i class="bi bi-bootstrap" style="font-size: 30px;"></i>
-      </a>
-      <span class="mb-3 mb-md-0 text-body-secondary">© 2025 The Castle Hotel, Inc</span>
+        <div class="flex gap-2 md:gap-4 items-center pl-2 md:pl-4 border-l border-gray-200">
+          {% if user.is_authenticated %}
+          <div class="flex flex-col items-end hidden lg:flex">
+            <span class="text-xs text-gray-500">Signed in as</span>
+            <span class="text-sm font-semibold text-[#111318] truncate max-w-[180px]">{{ user.username }}</span>
+          </div>
+          <a href="{% url 'logout' %}"
+            class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-3 md:px-4 bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all text-sm font-bold leading-normal">
+            <span class="truncate">Log Out</span>
+          </a>
+          {% else %}
+          <a href="{% url 'login' %}"
+            class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-3 md:px-4 bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all text-sm font-bold leading-normal">
+            <span class="truncate">Log In</span>
+          </a>
+          <a href="{% url 'signup' %}"
+            class="hidden sm:flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-3 md:px-4 bg-primary text-white hover:bg-blue-700 transition-all text-sm font-bold leading-normal">
+            <span class="truncate">Sign Up</span>
+          </a>
+          {% endif %}
+        </div>
+      </div>
+    </header>
+
+    <!-- Messages -->
+    {% if messages %}
+    <div class="container mx-auto px-4 mt-4 max-w-4xl">
+      {% for message in messages %}
+      <div
+        class="mb-3 p-4 rounded-lg {% if message.tags == 'error' %}bg-red-50 text-red-800 border border-red-200{% elif message.tags == 'success' %}bg-green-50 text-green-800 border border-green-200{% else %}bg-blue-50 text-blue-800 border border-blue-200{% endif %}">
+        {{ message }}
+      </div>
+      {% endfor %}
     </div>
-  
-    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-      <li class="ms-3">
-        <a class="text-body-secondary" href="https://www.instagram.com" target="_blank" aria-label="Instagram">
-          <i class="bi bi-instagram" style="font-size: 24px;"></i>
-        </a>
-      </li>
-      <li class="ms-3">
-        <a class="text-body-secondary" href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-          <i class="bi bi-facebook" style="font-size: 24px;"></i>
-        </a>
-      </li>
-      <li class="ms-3">
-        <a class="text-body-secondary" href="https://www.twitter.com" target="_blank" aria-label="Twitter">
-          <i class="bi bi-twitter" style="font-size: 24px;"></i>
-        </a>
-      </li>
-      <li class="ms-3">
-        <a class="text-body-secondary" href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn">
-          <i class="bi bi-linkedin" style="font-size: 24px;"></i>
-        </a>
-      </li>
-    </ul>
-  </footer>
-    <!-- Bootstrap JS (CDN) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    {% endif %}
 
-    <!-- Custom JS (optional) -->
-    <script src="{% static 'js/script.js' %}"></script>
+    <!-- Main Content -->
+    <main class="flex-1">
+      {% block content %}
+      {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-100 mt-auto">
+      <div class="flex flex-col gap-6 px-5 py-10 text-center items-center justify-center">
+        <div class="size-8 text-primary opacity-50">
+          <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M17 11V3H7v4H3v14h18V11h-4zm-8 4h2v2H9v-2zm2-4H9V9h2v2zm-2-4H7V5h2v2zm4 4h-2V9h2v2zm2 4h-2v-2h2v2zm-2-4h-2V5h2v6zM5 19v-6h2v6H5z">
+            </path>
+          </svg>
+        </div>
+        
+        <!-- Social Media Icons -->
+        <div class="flex gap-4 items-center">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" 
+             class="w-10 h-10 flex items-center justify-center rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
+             class="w-10 h-10 flex items-center justify-center rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+             class="w-10 h-10 flex items-center justify-center rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+        </div>
+        
+        <p class="text-gray-500 text-sm font-normal leading-normal">© 2025 The Castle Hotel, Inc. All rights reserved.
+        </p>
+        <div class="flex gap-6 text-sm text-gray-400">
+          <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+          <a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="{% static 'js/script.js' %}"></script>
 </body>
+
 </html>

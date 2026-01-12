@@ -1,24 +1,86 @@
 {% extends 'base.html' %}
-{% block header %}My Reservations{% endblock %}
+
 {% block content %}
-<div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8 mt-10 mb-10">
-  <h1 class="text-2xl font-bold mb-6 text-center">My Reservations</h1>
-  {% if reservations %}
+<section class="py-8 md:py-12 px-4 bg-background-light min-h-screen">
+  <div class="max-w-[1000px] mx-auto">
+
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <span class="text-primary font-bold tracking-wider uppercase text-sm">My Bookings</span>
+      <h1 class="text-3xl md:text-4xl font-bold text-[#111318] mt-2 mb-3">My Reservations</h1>
+      <p class="text-gray-600">Manage your upcoming stays</p>
+    </div>
+
+    {% if reservations %}
     <div class="space-y-4">
       {% for reservation in reservations %}
-        <div class="border rounded-lg p-4">
-          <p class="font-semibold">Room: {{ reservation.room.room_type }} ({{ reservation.room.room_number }})</p>
-          <p>Dates: {{ reservation.check_in_date }} → {{ reservation.check_out_date }}</p>
-          <p>Total: ${{ reservation.total_price }}</p>
-          <div class="mt-3 flex gap-3">
-            <a href="{% url 'reservation_edit' reservation.id %}" class="bg-blue-500 text-white px-3 py-2 rounded">Edit</a>
-            <a href="{% url 'reservation_delete' reservation.id %}" class="bg-red-500 text-white px-3 py-2 rounded">Delete</a>
+      <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
+        <div class="p-6">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <!-- Room Info -->
+            <div class="flex-1">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="bg-primary/10 text-primary w-12 h-12 rounded-lg flex items-center justify-center">
+                  <span class="material-symbols-outlined text-2xl">bed</span>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-[#111318]">{{ reservation.room.room_type }}</h3>
+                  <p class="text-sm text-gray-500">Room {{ reservation.room.room_number }}</p>
+                </div>
+              </div>
+
+              <!-- Dates -->
+              <div class="flex flex-wrap gap-4 text-sm">
+                <div class="flex items-center gap-2 text-gray-600">
+                  <span class="material-symbols-outlined text-lg">calendar_today</span>
+                  <span>{{ reservation.check_in_date|date:"M d, Y" }}</span>
+                </div>
+                <span class="text-gray-400">→</span>
+                <div class="flex items-center gap-2 text-gray-600">
+                  <span class="material-symbols-outlined text-lg">event</span>
+                  <span>{{ reservation.check_out_date|date:"M d, Y" }}</span>
+                </div>
+              </div>
+
+              <!-- Price -->
+              <div class="mt-3">
+                <span class="text-2xl font-bold text-primary">${{ reservation.total_price }}</span>
+                <span class="text-gray-500 text-sm ml-2">total</span>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex flex-col sm:flex-row gap-3">
+              <a href="{% url 'reservation_edit' reservation.id %}"
+                class="flex items-center justify-center gap-2 px-5 py-2.5 bg-primary/10 text-primary hover:bg-primary hover:text-white rounded-lg font-semibold transition-all">
+                <span class="material-symbols-outlined text-lg">edit</span>
+                Edit
+              </a>
+              <a href="{% url 'reservation_delete' reservation.id %}"
+                class="flex items-center justify-center gap-2 px-5 py-2.5 bg-red-50 text-red-600 hover:bg-red-600 hover:text-white rounded-lg font-semibold transition-all">
+                <span class="material-symbols-outlined text-lg">delete</span>
+                Delete
+              </a>
+            </div>
           </div>
         </div>
+      </div>
       {% endfor %}
     </div>
-  {% else %}
-    <p class="text-center text-gray-600">No reservations yet.</p>
-  {% endif %}
-</div>
+    {% else %}
+    <div class="bg-white rounded-xl shadow-md p-12 text-center">
+      <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+        <span class="material-symbols-outlined text-4xl text-gray-400">event_busy</span>
+      </div>
+      <h3 class="text-2xl font-bold text-[#111318] mb-2">No Reservations Yet</h3>
+      <p class="text-gray-600 mb-6">Start planning your perfect stay at The Castle Hotel</p>
+      <a href="{% url 'room_list' %}"
+        class="inline-flex items-center gap-2 bg-primary hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-all shadow-md hover:shadow-lg">
+        <span class="material-symbols-outlined">search</span>
+        Browse Rooms
+      </a>
+    </div>
+    {% endif %}
+  </div>
+</section>
 {% endblock %}
