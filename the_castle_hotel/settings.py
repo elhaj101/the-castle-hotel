@@ -67,26 +67,20 @@ TEMPLATES = [
 WSGI_APPLICATION = 'the_castle_hotel.wsgi.application'
 
 # Database
-# MySQL configuration via environment variables
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# If on Heroku (DATABASE_URL exists), use PostgreSQL
+import dj_database_url
 
-if os.environ.get('MYSQL_DATABASE'):
-    DATABASES['default'] = {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('MYSQL_DATABASE'),
-        'USER': os.environ.get('MYSQL_USER'),
-        'PASSWORD': os.environ.get('MYSQL_PASSWORD'),
-        'HOST': os.environ.get('MYSQL_HOST', 'localhost'),
-        'PORT': os.environ.get('MYSQL_PORT', '3306'),
-        'CONN_MAX_AGE': 600,
-        'OPTIONS': {
-            'charset': 'utf8mb4',
-        },
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+    }
+# If simple local dev (No DATABASE_URL), use SQLite
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
 
 # Password validation
